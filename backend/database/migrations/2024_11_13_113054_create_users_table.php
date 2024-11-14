@@ -17,7 +17,13 @@ return new class extends Migration
             $table->string('surname', 100);
             $table->string('patronymic', 100)->nullable();
             $table->date('birthday');
-            $table->string('status', 60);
+            $table->string('status', 60)->nullable();
+            $table->string('login')->unique();
+            $table->string('password');
+            $table->string('avatar_url')->nullable();
+            $table->boolean('sex');
+            $table->string('api_token')->unique();
+            $table->foreignId('role_id')->constrained('roles', 'id');
             $table->timestamps();
         });
     }
