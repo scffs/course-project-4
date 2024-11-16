@@ -16,7 +16,6 @@ class AuthController extends Controller
   {
     $role_user_id = Role::getUserRoleId();
     $path = null;
-    logger('$role_user_id', [$role_user_id]);
 
     if ($request->hasFile('avatar')) {
       $path = $request->file('avatar')->store('avatars', 'public');
