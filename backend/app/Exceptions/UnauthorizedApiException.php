@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class UnauthorizedException extends ApiException
+class UnauthorizedApiException extends ApiException
 {
   public function __construct(string $message = 'Unauthorized', int $code = Response::HTTP_UNAUTHORIZED)
   {

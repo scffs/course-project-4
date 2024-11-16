@@ -8,6 +8,7 @@ use App\Models\Article\Comment;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
@@ -57,6 +58,17 @@ class User extends Authenticatable implements ApiTokenInterface
   public function comments(): HasMany
   {
     return $this->hasMany(Comment::class, 'user_id');
+  }
+
+  public function isAdmin(): bool
+  {
+    dd($this->role);
+    return $this->role === 'admin';
+  }
+
+  public function role(): BelongsTo
+  {
+    return $this->belongsTo(Role::class, 'role_id');
   }
 
   protected function casts(): array

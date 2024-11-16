@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User\Role;
@@ -35,6 +36,9 @@ class AuthController extends Controller
   public function login(AuthRequest $request): JsonResponse
   {
     $user = Auth::user();
+
+    $user->isAdmin();
+
     $api_token = $user->generateApiToken();
 
     return response()->json([

@@ -1,10 +1,15 @@
 <?php
 
-use App\Exceptions\UnauthorizedException;
+use App\Exceptions\NotFoundException;
+use App\Exceptions\UnauthorizedApiException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+
+//use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
   ->withRouting(
@@ -14,10 +19,18 @@ return Application::configure(basePath: dirname(__DIR__))
     health: '/up',
   )
   ->withMiddleware(function (Middleware $middleware) {
-    $middleware->redirectGuestsTo(fn() => throw new UnauthorizedException());
+    $middleware->redirectGuestsTo(fn() => throw new UnauthorizedApiException());
 
   })
   ->withExceptions(function (Exceptions $exceptions) {
+    $exceptions->render(function (NotFoundHttpException $e, Request $request) {
+      throw new NotFoundException();
+    });
+
+    $exceptions->render(function (UnauthorizedHttpException $e, Request $request) {
+      throw new UnauthorizedApiException();
+    });
+
     $exceptions->shouldRenderJsonWhen(
       fn(Request $request) => $request->is('api/*') && !config('app.debug')
     );
