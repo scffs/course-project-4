@@ -7,6 +7,7 @@ use App\Interfaces\ApiTokenInterface;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -50,6 +51,11 @@ class User extends Authenticatable implements ApiTokenInterface
   {
     $this->api_token = null;
     $this->save();
+  }
+
+  public function comments(): HasMany
+  {
+    return $this->hasMany(Comment::class, 'user_id');
   }
 
   protected function casts(): array
