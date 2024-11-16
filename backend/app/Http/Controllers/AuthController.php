@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\AuthRequest;
-use App\Http\Requests\Api\RegisterRequest;
+use App\Http\Requests\AuthRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -35,7 +34,6 @@ class AuthController extends Controller
 
   public function login(AuthRequest $request): JsonResponse
   {
-
     $user = Auth::user();
     $api_token = $user->generateApiToken();
 
@@ -43,7 +41,6 @@ class AuthController extends Controller
       'user' => $user,
       'token' => $api_token,
     ]);
-
   }
 
 

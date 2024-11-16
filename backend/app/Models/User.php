@@ -4,12 +4,23 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Interfaces\ApiTokenInterface;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
+
+/**
+ * @mixin Eloquent
+ * @mixin Builder
+ */
 
 class User extends Authenticatable implements ApiTokenInterface
 {
+  use HasAttributes, HasApiTokens;
+
   protected $fillable = [
     'name',
     'surname',

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests;
 
 use App\Exceptions\ApiException;
 use Illuminate\Contracts\Validation\Validator;
