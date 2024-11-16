@@ -2,7 +2,7 @@
 
 namespace App\Models\User;
 
-use App\Interfaces\RoleInterface;
+use App\Models\User;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
