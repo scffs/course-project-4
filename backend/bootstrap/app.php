@@ -1,6 +1,6 @@
 <?php
 
-use App\Exceptions\ApiException;
+use App\Exceptions\UnauthorizedException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     health: '/up',
   )
   ->withMiddleware(function (Middleware $middleware) {
-    $middleware->redirectGuestsTo(fn() => throw new ApiException('Unauthorized', 401));
+    $middleware->redirectGuestsTo(fn() => throw new UnauthorizedException());
 
   })
   ->withExceptions(function (Exceptions $exceptions) {

@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 
-use App\Exceptions\ApiException;
+use App\Exceptions\UnauthorizedException;
 use Illuminate\Support\Facades\Auth;
 
 class AuthRequest extends ApiRequest
@@ -14,7 +14,7 @@ class AuthRequest extends ApiRequest
       return true;
     }
 
-    throw new ApiException('Failed auth', 401);
+    throw new UnauthorizedException();
   }
 
   public function rules(): array

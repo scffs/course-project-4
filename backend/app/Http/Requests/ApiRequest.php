@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Exceptions\ApiException;
+use App\Exceptions\ForbiddenException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,8 +14,7 @@ class ApiRequest extends FormRequest
    */
   public function failedAuthorization()
   {
-    throw new ApiException('Forbidden', 403);
-
+    throw new ForbiddenException();
   }
 
   /**

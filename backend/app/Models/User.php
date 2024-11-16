@@ -16,7 +16,6 @@ use Laravel\Sanctum\HasApiTokens;
  * @mixin Eloquent
  * @mixin Builder
  */
-
 class User extends Authenticatable implements ApiTokenInterface
 {
   use HasAttributes, HasApiTokens;

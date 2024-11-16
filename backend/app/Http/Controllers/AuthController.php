@@ -49,6 +49,6 @@ class AuthController extends Controller
     $user = Auth::user();
     $user->resetApiToken();
 
-    return response()->json(['message' => 'Logged out successfully']);
+    return response()->json();
   }
 }
