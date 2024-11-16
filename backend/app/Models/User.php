@@ -3,23 +3,24 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Interfaces\ApiTokenInterface;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ApiTokenInterface
 {
   protected $fillable = [
     'name',
     'surname',
     'patronymic',
+    'sex',
     'birthday',
     'status',
     'login',
     'avatar_url',
-    'email',
-    'sex',
     'password',
+    'role_id',
   ];
 
   protected $hidden = [

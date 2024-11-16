@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Exceptions\ApiException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\ApiRequest;
+use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Api\RegisterRequest;
 use App\Models\Role;
 use App\Models\User;
@@ -15,15 +14,16 @@ class AuthController extends Controller
 {
   public function register(RegisterRequest $request): JsonResponse
   {
-    $role_user = Role::getUserRoleId();
+    $role_user_id = Role::getUserRoleId();
     $path = null;
+    logger('$role_user_id', [$role_user_id]);
 
     if ($request->hasFile('avatar')) {
       $path = $request->file('avatar')->store('avatars', 'public');
     }
 
     $user = User::create([
-      ...$request->validated(), 'avatar' => $path, 'role_id' => $role_user->id
+      ...$request->validated(), 'avatar' => $path, 'role_id' => $role_user_id
     ]);
 
     $api_token = $user->generateApiToken();
@@ -34,11 +34,8 @@ class AuthController extends Controller
     ], 201);
   }
 
-  public function login(ApiRequest $request): JsonResponse
+  public function login(AuthRequest $request): JsonResponse
   {
-    if (!Auth::attempt($request->only('email', 'password'))) {
-      throw new ApiException('Failed auth', 401);
-    }
 
     $user = Auth::user();
     $api_token = $user->generateApiToken();
@@ -47,6 +44,7 @@ class AuthController extends Controller
       'user' => $user,
       'token' => $api_token,
     ]);
+
   }
 
 
@@ -55,6 +53,6 @@ class AuthController extends Controller
     $user = Auth::user();
     $user->resetApiToken();
 
-    return response()->json();
+    return response()->json(['message' => 'Logged out successfully']);
   }
 }
