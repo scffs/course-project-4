@@ -1,29 +1,28 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Article;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @mixin Eloquent
  * @mixin Builder
  */
-class Hero extends Model
+class ArticleCategory extends Model
 {
   use HasAttributes;
 
   protected $fillable = [
     'name',
-    'sex',
-    'description',
-    'photo_url',
-    'health',
-    'damage_per_sec',
-    'bullets_amount',
-    'move_speed',
-    'weapon_damage',
+    'code',
   ];
+
+  public function articles(): HasMany
+  {
+    return $this->hasMany(Article::class);
+  }
 }

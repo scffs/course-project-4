@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Article;
 
+use App\Models\User\User;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;

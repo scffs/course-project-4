@@ -1,25 +1,28 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Item;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @mixin Eloquent
  * @mixin Builder
  */
-class Ability extends Model
+class ItemCategory extends Model
 {
   use HasAttributes;
 
   protected $fillable = [
     'name',
-    'description',
-    'photo_url',
-    'hero_id',
+    'code',
   ];
 
+  public function items(): HasMany
+  {
+    return $this->hasMany(Item::class);
+  }
 }
