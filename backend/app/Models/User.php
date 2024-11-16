@@ -3,16 +3,34 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Interfaces\ApiTokenInterface;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+/**
+ * @mixin Eloquent
+ * @mixin Builder
+ */
+class User extends Authenticatable implements ApiTokenInterface
 {
+  use HasAttributes, HasApiTokens;
+
   protected $fillable = [
     'name',
-    'email',
+    'surname',
+    'patronymic',
+    'sex',
+    'birthday',
+    'status',
+    'login',
+    'avatar_url',
     'password',
+    'role_id',
   ];
 
   protected $hidden = [
@@ -37,8 +55,8 @@ class User extends Authenticatable
   protected function casts(): array
   {
     return [
-      'email_verified_at' => 'datetime',
       'password' => 'hashed',
+      'sex' => 'boolean',
     ];
   }
 }

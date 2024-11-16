@@ -1,0 +1,49 @@
+# Laravel specific
+vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Compiled output
+dist/
+tmp/
+out-tsc/
+bazel-out/
+
+
+# Laravel
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+storage/*.key
+.vscode/
+.idea/
+
+# Compiled output
+bin/
+obj/
+*.swp
+*.swo
+
+# Maui
+*.user
+*.suo
+*.csproj.user
+*.sln.docstates
+*.userprefs
+*.userpref
+*.pidb
+*.resources
+*.resources.cs
+*.resources.designer.cs
+*.designer.cs
+*.cache
+*.DS_Store
+*.nupkg
+
+# Misc
+.vs/

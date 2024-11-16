@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Exceptions\ApiException;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\ApiRequest;
-use App\Http\Requests\Api\RegisterRequest;
+use App\Http\Requests\AuthRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -15,7 +13,7 @@ class AuthController extends Controller
 {
   public function register(RegisterRequest $request): JsonResponse
   {
-    $role_user = Role::getUserRoleId();
+    $role_user_id = Role::getUserRoleId();
     $path = null;
 
     if ($request->hasFile('avatar')) {
@@ -23,7 +21,7 @@ class AuthController extends Controller
     }
 
     $user = User::create([
-      ...$request->validated(), 'avatar' => $path, 'role_id' => $role_user->id
+      ...$request->validated(), 'avatar' => $path, 'role_id' => $role_user_id
     ]);
 
     $api_token = $user->generateApiToken();
@@ -34,12 +32,8 @@ class AuthController extends Controller
     ], 201);
   }
 
-  public function login(ApiRequest $request): JsonResponse
+  public function login(AuthRequest $request): JsonResponse
   {
-    if (!Auth::attempt($request->only('email', 'password'))) {
-      throw new ApiException('Failed auth', 401);
-    }
-
     $user = Auth::user();
     $api_token = $user->generateApiToken();
 
