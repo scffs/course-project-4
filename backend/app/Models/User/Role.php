@@ -18,10 +18,10 @@ class Role extends Model
     'code'
   ];
 
-//  public static function getUserRoleId(): ?int
-//  {
-//    return self::where('code', 'user')->first()->id;
-//  }
+  public static function getUserRoleId(): ?int
+  {
+    return self::where('code', 'user')->first()->id;
+  }
 
   public function users(): HasMany
   {
