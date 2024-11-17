@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Hero;
+use App\Models\Hero\Hero;
 use Illuminate\Database\Seeder;
 
 class HeroSeeder extends Seeder
