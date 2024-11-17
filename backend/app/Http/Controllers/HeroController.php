@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\Hero\StoreHeroRequest;
 use App\Http\Requests\Hero\UpdateHeroRequest;
 use App\Models\Hero\Hero;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 
 class HeroController extends Controller

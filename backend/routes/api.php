@@ -12,18 +12,6 @@ Route::prefix('auth')->group(function () {
   });
 });
 
-Route::middleware('auth:api')->group(function () {
-  Route::prefix('admin')->group(function () {
-    Route::prefix('heroes')->group(function () {
-      Route::controller(HeroController::class)->group(function () {
-        Route::get('/', 'index');
-        Route::get('/create', 'create');
-        Route::post('/', 'store');
-        Route::get('/{hero}', 'show');
-        Route::get('/{hero}/edit', 'edit');
-        Route::put('/{hero}', 'update');
-        Route::delete('/{hero}', 'destroy');
-      });
-    });
-  });
+Route::middleware('auth:api')->prefix('admin')->group(function () {
+  Route::apiResource('heroes', HeroController::class);
 });

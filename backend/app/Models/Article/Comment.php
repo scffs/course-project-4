@@ -2,10 +2,9 @@
 
 namespace App\Models\Article;
 
-use App\Models\User;
+use App\Models\User\User;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,8 +14,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Comment extends Model
 {
-  use HasAttributes;
-
   protected $fillable = [
     'text',
     'user_id',

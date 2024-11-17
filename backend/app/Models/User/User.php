@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Interfaces\ApiTokenInterface;
 use App\Models\Article\Comment;
-use App\Models\User\Role;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,7 +20,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable implements ApiTokenInterface
 {
-  use HasAttributes, HasApiTokens;
+  use HasApiTokens;
 
   protected $fillable = [
     'name',
@@ -63,8 +61,7 @@ class User extends Authenticatable implements ApiTokenInterface
 
   public function isAdmin(): bool
   {
-    dd($this->role);
-    return $this->role === 'admin';
+    return $this->role->code === 'admin';
   }
 
   public function role(): BelongsTo
