@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\AbilityController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
@@ -16,4 +17,10 @@ Route::apiResource('heroes', HeroController::class)->only(['index', 'show']);
 
 Route::middleware('auth:api')->group(function () {
   Route::apiResource('heroes', HeroController::class)->except(['index', 'show']);
+});
+
+Route::apiResource('abilities', AbilityController::class)->only(['index', 'show']);
+
+Route::middleware('auth:api')->group(function () {
+  Route::apiResource('abilities', HeroController::class)->except(['index', 'show']);
 });
