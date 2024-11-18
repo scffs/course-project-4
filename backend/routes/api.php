@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +12,6 @@ Route::prefix('auth')->group(function () {
   });
 });
 
-Route::middleware('auth:api')->prefix('admin')->group(function () {
+Route::middleware('auth:api')->group(function () {
   Route::apiResource('heroes', HeroController::class);
 });

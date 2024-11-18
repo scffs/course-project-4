@@ -10,14 +10,14 @@ class HeroPolicy
 {
   use HandlesAuthorization;
 
-  public function viewAny(User $user): bool
+  public function viewAny(): bool
   {
-    return $user->isAdmin();
+    return true;
   }
 
-  public function view(User $user, Hero $hero): bool
+  public function view(): bool
   {
-    return $user->isAdmin();
+    return true;
   }
 
   public function create(User $user): bool
@@ -25,12 +25,12 @@ class HeroPolicy
     return $user->isAdmin();
   }
 
-  public function update(User $user, Hero $hero): bool
+  public function update(User $user): bool
   {
     return $user->isAdmin();
   }
 
-  public function delete(User $user, Hero $hero): bool
+  public function delete(User $user): bool
   {
     return $user->isAdmin();
   }
