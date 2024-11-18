@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -22,7 +22,6 @@ class UserSeeder extends Seeder
       'password' => 'admin',
       'login' => 'admin',
       'avatar_url' => null,
-      'api_token' => '1',
       'role_id' => 1,
     ]);
     User::create([
@@ -35,7 +34,6 @@ class UserSeeder extends Seeder
       'password' => 'user',
       'login' => 'user',
       'avatar_url' => null,
-      'api_token' => '2',
       'role_id' => 2,
     ]);
   }

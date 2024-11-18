@@ -21,7 +21,6 @@ return new class extends Migration {
       $table->string('password');
       $table->string('avatar_url')->nullable();
       $table->boolean('sex');
-      $table->string('api_token')->unique()->nullable();
       $table->foreignId('role_id')->constrained();
       $table->timestamps();
     });

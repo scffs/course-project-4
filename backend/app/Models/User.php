@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Interfaces\ApiTokenInterface;
@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -42,16 +40,12 @@ class User extends Authenticatable implements ApiTokenInterface
 
   public function generateApiToken(): string
   {
-    $this->api_token = Hash::make(Str::random(60));
-    $this->save();
-
-    return $this->api_token;
+    return $this->createToken('user')->plainTextToken;
   }
 
   public function resetApiToken(): void
   {
-    $this->api_token = null;
-    $this->save();
+    $this->currentAccessToken()->delete();
   }
 
   public function comments(): HasMany
