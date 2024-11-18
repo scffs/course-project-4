@@ -3,9 +3,6 @@
 namespace App\Http\Requests;
 
 
-use App\Exceptions\UnauthorizedApiException;
-use Illuminate\Support\Facades\Auth;
-
 class AuthRequest extends ApiRequest
 {
   public function rules(): array

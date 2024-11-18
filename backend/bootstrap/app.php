@@ -20,12 +20,11 @@ return Application::configure(basePath: dirname(__DIR__))
   )
   ->withMiddleware(function (Middleware $middleware) {
     $middleware->redirectGuestsTo(fn() => throw new UnauthorizedApiException());
-
   })
   ->withExceptions(function (Exceptions $exceptions) {
-//    $exceptions->render(function (NotFoundHttpException $e, Request $request) {
-//      throw new NotFoundException();
-//    });
+    $exceptions->render(function (NotFoundHttpException $e, Request $request) {
+      throw new NotFoundException();
+    });
 
     $exceptions->render(function (UnauthorizedHttpException $e, Request $request) {
       throw new UnauthorizedApiException();

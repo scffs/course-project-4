@@ -40,7 +40,6 @@ class AuthController extends Controller
     }
 
     $user = Auth::user();
-
     $api_token = $user->generateApiToken();
 
     return response()->json([
@@ -52,9 +51,7 @@ class AuthController extends Controller
 
   public function logout(): JsonResponse
   {
-    $user = Auth::user();
-    $user->resetApiToken();
-
+    Auth::user()->resetApiToken();
     return response()->json();
   }
 }
