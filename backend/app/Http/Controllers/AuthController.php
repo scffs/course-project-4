@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\UnauthorizedApiException;
 use App\Http\Requests\AuthRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Models\User\Role;
-use App\Models\User\User;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,10 @@ class AuthController extends Controller
 
   public function login(AuthRequest $request): JsonResponse
   {
+    if (!Auth::attempt(request()->only('login', 'password'))) {
+      throw new UnauthorizedApiException();
+    }
+
     $user = Auth::user();
 
     $api_token = $user->generateApiToken();
