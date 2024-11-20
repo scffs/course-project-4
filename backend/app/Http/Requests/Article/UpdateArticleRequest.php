@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Article;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\ApiRequest;
 
-class UpdateArticleRequest extends FormRequest
+class UpdateArticleRequest extends ApiRequest
 {
   public function rules(): array
   {
