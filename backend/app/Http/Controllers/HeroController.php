@@ -19,7 +19,7 @@ class HeroController extends Controller
 
   public function index(): JsonResponse
   {
-    $heroes = Hero::all();
+    $heroes = Hero::with('abilities')->get();
     return response()->json($heroes);
   }
 
@@ -31,6 +31,7 @@ class HeroController extends Controller
 
   public function show(Hero $hero): JsonResponse
   {
+    $hero->load('abilities');
     return response()->json($hero);
   }
 

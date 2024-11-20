@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\UnauthorizedApiException;
-use App\Http\Requests\AuthRequest;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Auth\AuthRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
