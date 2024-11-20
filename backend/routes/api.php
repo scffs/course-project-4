@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
@@ -19,3 +20,4 @@ Route::protectedResource('heroes', HeroController::class);
 Route::protectedResource('abilities', AbilityController::class);
 Route::protectedResource('articles', ArticleController::class);
 Route::protectedResource('comments', CommentController::class);
+Route::protectedResource('items', ItemController::class);
