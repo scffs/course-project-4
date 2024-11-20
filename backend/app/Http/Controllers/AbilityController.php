@@ -19,7 +19,7 @@ class AbilityController extends Controller
 
   public function index(): JsonResponse
   {
-    $abilities = Ability::all();
+    $abilities = Ability::with('hero')->get();
     return response()->json($abilities);
   }
 
@@ -31,6 +31,7 @@ class AbilityController extends Controller
 
   public function show(Ability $ability): JsonResponse
   {
+    $ability->load('hero');
     return response()->json($ability);
   }
 

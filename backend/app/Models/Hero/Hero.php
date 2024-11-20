@@ -5,6 +5,7 @@ namespace App\Models\Hero;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @mixin Eloquent
@@ -23,4 +24,9 @@ class Hero extends Model
     'move_speed',
     'weapon_damage',
   ];
+
+  public function abilities(): HasMany
+  {
+    return $this->hasMany(Ability::class);
+  }
 }

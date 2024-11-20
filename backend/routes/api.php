@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroController;
-use App\Http\Controllers\AbilityController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
