@@ -11,7 +11,7 @@ class StoreItemRequest extends ApiRequest
   {
     return [
       'title' => 'required|string|max:255',
-      'is_activated' => 'required|boolean|default:false',
+      'is_activated' => 'nullable|boolean',
       'preview_url' => 'required|string|max:255',
       'description' => 'nullable|string',
       'price' => 'required|numeric|min:0.1',
