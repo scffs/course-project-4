@@ -10,7 +10,6 @@ class UpdateCommentRequest extends FormRequest
   {
     return [
       'text' => 'string',
-      'user_id' => 'exists:users,id',
       'article_id' => 'exists:articles,id',
     ];
   }
