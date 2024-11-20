@@ -14,13 +14,9 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::apiResource('heroes', HeroController::class)->only(['index', 'show']);
-
-Route::middleware('auth:api')->group(function () {
-  Route::apiResource('heroes', HeroController::class)->except(['index', 'show']);
-});
-
 Route::apiResource('abilities', AbilityController::class)->only(['index', 'show']);
 
 Route::middleware('auth:api')->group(function () {
+  Route::apiResource('heroes', HeroController::class)->except(['index', 'show']);
   Route::apiResource('abilities', HeroController::class)->except(['index', 'show']);
 });
