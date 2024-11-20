@@ -18,6 +18,12 @@ class CommentController extends Controller
     $this->authorizeResource(Comment::class, 'comment');
   }
 
+  public function index(): JsonResponse
+  {
+    $comments = Comment::with('user', 'article')->get();
+    return response()->json($comments);
+  }
+
   public function store(StoreCommentRequest $request): JsonResponse
   {
     $validatedData = $request->validated();
@@ -25,6 +31,12 @@ class CommentController extends Controller
 
     $comment = Comment::create($validatedData);
     return response()->json($comment, 201);
+  }
+
+  public function show(Comment $comment): JsonResponse
+  {
+    $comment->load('user', 'article');
+    return response()->json($comment);
   }
 
   public function update(UpdateCommentRequest $request, Comment $comment): JsonResponse

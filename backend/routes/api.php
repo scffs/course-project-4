@@ -15,13 +15,7 @@ Route::prefix('auth')->group(function () {
   });
 });
 
-Route::publicResource('heroes', HeroController::class)->only(['index', 'show']);
-Route::publicResource('abilities', AbilityController::class)->only(['index', 'show']);
-Route::publicResource('articles', ArticleController::class)->only(['index', 'show']);
-
-Route::middleware('auth:api')->group(function () {
-  Route::protectedResource('heroes', HeroController::class)->except(['index', 'show']);
-  Route::protectedResource('abilities', HeroController::class)->except(['index', 'show']);
-  Route::protectedResource('articles', ArticleController::class)->except(['index', 'show']);
-  Route::protectedResource('comments', CommentController::class)->except(['index', 'show']);
-});
+Route::protectedResource('heroes', HeroController::class);
+Route::protectedResource('abilities', AbilityController::class);
+Route::protectedResource('articles', ArticleController::class);
+Route::protectedResource('comments', CommentController::class);

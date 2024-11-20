@@ -5,21 +5,16 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
+
 class AppServiceProvider extends ServiceProvider
 {
-  public function register(): void
-  {
-    //
-  }
-
   public function boot(): void
   {
-    Route::macro('publicResource', function ($name, $controller) {
-      return Route::apiResource($name, $controller)->only(['index', 'show']);
-    });
-
     Route::macro('protectedResource', function ($name, $controller) {
-      return Route::apiResource($name, $controller)->except(['index', 'show']);
+      return Route::group([], function () use ($name, $controller) {
+        Route::apiResource($name, $controller)->only(['index', 'show']);
+        Route::apiResource($name, $controller)->except(['index', 'show'])->middleware('auth:api');
+      });
     });
   }
 }
