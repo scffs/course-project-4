@@ -2,23 +2,24 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-  /**
-   * Register any application services.
-   */
   public function register(): void
   {
     //
   }
 
-  /**
-   * Bootstrap any application services.
-   */
   public function boot(): void
   {
-    //
+    Route::macro('publicResource', function ($name, $controller) {
+      return Route::apiResource($name, $controller)->only(['index', 'show']);
+    });
+
+    Route::macro('protectedResource', function ($name, $controller) {
+      return Route::apiResource($name, $controller)->except(['index', 'show']);
+    });
   }
 }
