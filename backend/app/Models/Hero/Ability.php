@@ -5,6 +5,7 @@ namespace App\Models\Hero;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @mixin Eloquent
@@ -19,4 +20,8 @@ class Ability extends Model
     'hero_id',
   ];
 
+  public function hero(): BelongsTo
+  {
+    return $this->belongsTo(Hero::class);
+  }
 }

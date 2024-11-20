@@ -19,7 +19,7 @@ class ItemController extends Controller
 
   public function index(): JsonResponse
   {
-    $items = Item::all();
+    $items = Item::with('itemCategory')->get();
     return response()->json($items);
   }
 
@@ -31,6 +31,7 @@ class ItemController extends Controller
 
   public function show(Item $item): JsonResponse
   {
+    $item->load('itemCategory');
     return response()->json($item);
   }
 
