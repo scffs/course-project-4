@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UserPanel.Views.Auth.LoginPage"
+             Title="LoginPage"
+             BackgroundColor="Black">
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="20"
+                                     Padding="20">
+
+                    <!-- Логотип с обработчиком касания -->
+                    <Image Source="biglogo.png" HeightRequest="100">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBigLogoTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <!-- Заголовок -->
+                    <Label Text="Вход"
+                           TextColor="White"
+                           FontSize="24"
+                           HorizontalOptions="Center" />
+
+                    <!-- Поля ввода -->
+                    <Frame BackgroundColor="#1A1A1A"
+                           BorderColor="White"
+                           CornerRadius="5"
+                           Padding="0"
+                           HasShadow="False"
+                           Margin="0,10,0,0">
+                        <Entry Placeholder="Логин"
+                               Keyboard="Email"
+                               TextColor="White"
+                               PlaceholderColor="Gray"
+                               BackgroundColor="Transparent"
+                               HeightRequest="40"
+                               WidthRequest="250"
+                               Margin="10,0" />
+                    </Frame>
+
+                    <Frame BackgroundColor="#1A1A1A"
+                           BorderColor="White"
+                           CornerRadius="5"
+                           Padding="0"
+                           HasShadow="False"
+                           Margin="0,10,0,0">
+                        <Entry Placeholder="Пароль"
+                               IsPassword="True"
+                               TextColor="White"
+                               PlaceholderColor="Gray"
+                               BackgroundColor="Transparent"
+                               HeightRequest="40"
+                               WidthRequest="250"
+                               Margin="10,0" />
+                    </Frame>
+
+                    <!-- Кнопка Войти -->
+                    <Button Text="Войти"
+                            TextColor="White"
+                            BackgroundColor="#FF5722"
+                            CornerRadius="20"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            FontAttributes="Bold"
+                            Margin="0,20,0,0" />
+
+                    <!-- Ссылка для регистрации -->
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Text="Нет аккаунта?"
+                               FontSize="14"
+                               TextColor="White" />
+                        <Label Text=" Зарегистрируйся"
+                               FontSize="14"
+                               TextColor="#2196F3">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
