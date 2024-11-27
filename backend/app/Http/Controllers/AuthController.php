@@ -49,6 +49,27 @@ class AuthController extends Controller
     ]);
   }
 
+  public function adminLogin(AuthRequest $request): JsonResponse
+  {
+    Auth::shouldUse('web');
+    if (!Auth::attempt(request()->only('login', 'password'))) {
+      throw new UnauthorizedApiException();
+    }
+
+    $user = Auth::user();
+
+    if (!$user->isAdmin()) {
+      throw new UnauthorizedApiException();
+    }
+
+    $api_token = $user->generateApiToken();
+
+    return response()->json([
+      'user' => $user,
+      'token' => $api_token,
+    ]);
+  }
+
 
   public function logout(): JsonResponse
   {
