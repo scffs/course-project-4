@@ -15,7 +15,7 @@ class StoreItemRequest extends ApiRequest
       'preview_url' => 'required|string|max:255',
       'description' => 'nullable|string',
       'price' => 'required|numeric|min:0.1',
-      'item_category_id' => 'required|integer|exists:item_category_id,id',
+      'item_category_id' => 'required|integer|exists:item_categories,id',
     ];
   }
 }
