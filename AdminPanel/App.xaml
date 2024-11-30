@@ -1,23 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:AdminPanel.Helpers"
              x:Class="AdminPanel.App">
-  <Application.Resources>
-    <ResourceDictionary>
-      <helpers:InverseBoolConverter x:Key="InverseBoolConverter" />
-    </ResourceDictionary>
+    <Application.Resources>
+        <ResourceDictionary>
+            <helpers:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <helpers:StringNotEmptyConverter x:Key="StringNotEmptyConverter" />
 
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-        <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-      </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-  </Application.Resources>
-
-  <!-- 2024-11-27 16:00:05.711645+0700 AdminPanel[84902:5465975] Microsoft.iOS: Socket error while connecting to IDE on 127.0.0.1:10000: Connection refused -->
-  <!-- 2024-11-27 16:00:06.426734+0700 AdminPanel[84902:5465901] You've implemented -[<UIApplicationDelegate> application:performFetchWithCompletionHandler:], but you still need to add "fetch" to the list of your supported UIBackgroundModes in your Info.plist. -->
-
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
