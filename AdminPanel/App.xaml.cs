@@ -15,10 +15,10 @@ public partial class App : Application
     {
         base.OnStart();
 
-        var token = await SecureStorage.GetAsync("auth_token");
+        var token = Preferences.Get("auth_token", string.Empty);
 
         if (string.IsNullOrEmpty(token))
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(MauiProgram.ServiceProvider.GetRequiredService<LoginPage>());
         else
             MainPage = new AppShell();
     }

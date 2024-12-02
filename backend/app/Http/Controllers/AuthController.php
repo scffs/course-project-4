@@ -51,6 +51,7 @@ class AuthController extends Controller
 
   public function adminLogin(AuthRequest $request): JsonResponse
   {
+    logger("request", ['data' => request()->only('login', 'password')]);
     Auth::shouldUse('web');
     if (!Auth::attempt(request()->only('login', 'password'))) {
       throw new UnauthorizedApiException();

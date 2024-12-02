@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
@@ -22,3 +23,6 @@ Route::protectedResource('abilities', AbilityController::class);
 Route::protectedResource('articles', ArticleController::class);
 Route::protectedResource('comments', CommentController::class);
 Route::protectedResource('items', ItemController::class);
+Route::protectedResource('profile', ProfileController::class, [
+  'only' => ['show', 'update'],
+]);

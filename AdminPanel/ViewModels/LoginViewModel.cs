@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AdminPanel.Models;
 using AdminPanel.Services;
@@ -13,15 +14,16 @@ public partial class LoginViewModel : ObservableObject
 {
     private readonly AuthService _authService;
 
-    [ObservableProperty] private User currentUser;
+    public LoginViewModel(AuthService authService)
+    {
+        _authService = authService;
+    }
 
-    [ObservableProperty] private string errorMessage;
-
-    [ObservableProperty] private bool isBusy;
-
-    [ObservableProperty] private string login;
-
-    [ObservableProperty] private string password;
+    [ObservableProperty] private User? _currentUser;
+    [ObservableProperty] private string? _errorMessage;
+    [ObservableProperty] private bool _isBusy;
+    [ObservableProperty] private string? _login;
+    [ObservableProperty] private string? _password;
 
     [RelayCommand]
     public async Task LoginAsync()
@@ -34,19 +36,21 @@ public partial class LoginViewModel : ObservableObject
         {
             var authResponse = await _authService.LoginAsync(Login, Password);
 
-            if (authResponse == null || string.IsNullOrEmpty(authResponse.Token))
+            if (string.IsNullOrEmpty(authResponse.Token))
             {
                 ErrorMessage = "Неверные данные для входа.";
                 return;
             }
 
             CurrentUser = authResponse.User;
-            await SecureStorage.SetAsync("auth_token", authResponse.Token);
+            Preferences.Set("auth_token", authResponse.Token);
+            Preferences.Set("current_user", JsonSerializer.Serialize<User>(CurrentUser));
 
             Application.Current.MainPage = new AppShell();
         }
         catch (Exception ex)
         {
+            Console.WriteLine(ex.Message);
             ErrorMessage = ex.Message;
         }
         finally
