@@ -1,25 +1,40 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System;
+using AdminPanel.Services;
+using AdminPanel.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
 
-namespace AdminPanel
+namespace AdminPanel;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static IServiceProvider? ServiceProvider { get; private set; }
+
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
+
+        // Регистрация сервисов
+        builder.Services.AddHttpClient<AuthService>(client =>
         {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+            client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
+        });
+        builder.Services.AddSingleton<AuthService>();
+        builder.Services.AddTransient<LoginViewModel>();
+        builder.Services.AddTransient<LoginPage>();
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+        var app = builder.Build();
 
-            return builder.Build();
-        }
+        ServiceProvider = app.Services;
+
+        return app;
     }
 }
