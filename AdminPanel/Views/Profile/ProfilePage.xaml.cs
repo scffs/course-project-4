@@ -1,4 +1,4 @@
-namespace AdminPanel;
+namespace AdminPanel.Views.Profile;
 
 public partial class ProfilePage
 {

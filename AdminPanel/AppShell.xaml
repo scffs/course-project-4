@@ -4,10 +4,11 @@
   x:Class="AdminPanel.AppShell"
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  xmlns:local="clr-namespace:AdminPanel"
+  xmlns:base="clr-namespace:AdminPanel.Views.Base"
+  xmlns:profile="clr-namespace:AdminPanel.Views.Profile"
   FlyoutBehavior="Disabled"
   Title="AdminPanel">
 
-  <ShellContent Title="Главная" ContentTemplate="{DataTemplate local:MainPage}" />
-  <ShellContent Title="Профиль" ContentTemplate="{DataTemplate local:ProfilePage}" />
+  <ShellContent Title="Главная" ContentTemplate="{DataTemplate base:MainPage}" />
+  <ShellContent Title="Профиль" ContentTemplate="{DataTemplate profile:ProfilePage}" />
 </Shell>

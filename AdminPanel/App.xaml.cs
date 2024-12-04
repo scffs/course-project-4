@@ -1,4 +1,8 @@
-﻿namespace AdminPanel;
+﻿using AdminPanel.Views;
+using AdminPanel.Views.Base;
+using Microsoft.Maui.Storage;
+
+namespace AdminPanel;
 
 public partial class App
 {

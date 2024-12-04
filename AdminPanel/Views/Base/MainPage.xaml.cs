@@ -1,4 +1,4 @@
-﻿namespace AdminPanel;
+﻿namespace AdminPanel.Views.Base;
 
 public partial class MainPage
 {

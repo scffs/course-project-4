@@ -1,6 +1,7 @@
 using AdminPanel.ViewModels;
+using LoginViewModel = AdminPanel.ViewModels.Login.LoginViewModel;
 
-namespace AdminPanel;
+namespace AdminPanel.Views;
 
 public partial class LoginPage
 {
