@@ -1,24 +1,13 @@
-using System;
 using System.Text.Json;
-using System.Threading.Tasks;
 using AdminPanel.Models;
 using AdminPanel.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Storage;
 
 namespace AdminPanel.ViewModels;
 
-public partial class LoginViewModel : ObservableObject
+public partial class LoginViewModel(AuthService authService) : ObservableObject
 {
-    private readonly AuthService _authService;
-
-    public LoginViewModel(AuthService authService)
-    {
-        _authService = authService;
-    }
-
     [ObservableProperty] private User? _currentUser;
     [ObservableProperty] private string? _errorMessage;
     [ObservableProperty] private bool _isBusy;
@@ -26,7 +15,7 @@ public partial class LoginViewModel : ObservableObject
     [ObservableProperty] private string? _password;
 
     [RelayCommand]
-    public async Task LoginAsync()
+    private async Task LoginAsync()
     {
         if (IsBusy) return;
         IsBusy = true;
@@ -34,7 +23,7 @@ public partial class LoginViewModel : ObservableObject
 
         try
         {
-            var authResponse = await _authService.LoginAsync(Login, Password);
+            var authResponse = await authService.LoginAsync(Login, Password);
 
             if (string.IsNullOrEmpty(authResponse.Token))
             {

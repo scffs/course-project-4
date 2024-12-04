@@ -1,9 +1,5 @@
-﻿using System;
-using AdminPanel.Services;
+﻿using AdminPanel.Services;
 using AdminPanel.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
 
 namespace AdminPanel;
 

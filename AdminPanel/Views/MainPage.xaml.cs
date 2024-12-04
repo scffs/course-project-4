@@ -1,8 +1,8 @@
 ﻿namespace AdminPanel;
 
-public partial class AppShell
+public partial class MainPage
 {
-    public AppShell()
+    public MainPage()
     {
         InitializeComponent();
     }

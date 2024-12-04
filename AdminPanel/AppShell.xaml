@@ -9,6 +9,5 @@
   Title="AdminPanel">
 
   <ShellContent Title="Главная" ContentTemplate="{DataTemplate local:MainPage}" />
-  <!-- <ShellContent Title="Профиль" ContentTemplate="{DataTemplate local:ProfilePage}" /> -->
-
+  <ShellContent Title="Профиль" ContentTemplate="{DataTemplate local:ProfilePage}" />
 </Shell>
