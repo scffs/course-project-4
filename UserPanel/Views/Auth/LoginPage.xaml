@@ -34,7 +34,7 @@
                            HasShadow="False"
                            Margin="0,10,0,0">
                         <Entry Placeholder="Логин"
-                               Keyboard="Email"
+                               Text="{Binding Login}"
                                TextColor="White"
                                PlaceholderColor="Gray"
                                BackgroundColor="Transparent"
@@ -51,6 +51,7 @@
                            Margin="0,10,0,0">
                         <Entry Placeholder="Пароль"
                                IsPassword="True"
+                               Text="{Binding Password}"
                                TextColor="White"
                                PlaceholderColor="Gray"
                                BackgroundColor="Transparent"
@@ -68,6 +69,9 @@
                             HorizontalOptions="FillAndExpand"
                             FontAttributes="Bold"
                             Margin="0,20,0,0" />
+                    
+                    <Label Text="{Binding ErrorMessage}" TextColor="Red"
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" />
 
                     <!-- Ссылка для регистрации -->
                     <HorizontalStackLayout HorizontalOptions="Center">

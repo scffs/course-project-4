@@ -1,16 +1,17 @@
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Maui.Controls.PlatformConfiguration;
+using UserPanel.ViewModels;
 
 namespace UserPanel.Views.Auth;
 
 public partial class LoginPage : ContentPage
 {
-    public LoginPage()
+    public LoginPage(LoginViewModel viewModel)
     {
 		InitializeComponent();
 
         // Привязка команды для перехода
-        BindingContext = this;
+        BindingContext = viewModel;
     }
 
     // Команда для навигации
