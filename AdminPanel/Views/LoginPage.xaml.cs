@@ -4,9 +4,9 @@ namespace AdminPanel.Views;
 
 public partial class LoginPage
 {
-    public LoginPage(LoginViewModel viewModel)
-    {
-        InitializeComponent();
-        BindingContext = viewModel;
-    }
+  public LoginPage(LoginViewModel viewModel)
+  {
+    InitializeComponent();
+    BindingContext = viewModel;
+  }
 }
