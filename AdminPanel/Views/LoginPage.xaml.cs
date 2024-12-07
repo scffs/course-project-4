@@ -1,4 +1,3 @@
-using AdminPanel.ViewModels;
 using LoginViewModel = AdminPanel.ViewModels.Login.LoginViewModel;
 
 namespace AdminPanel.Views;

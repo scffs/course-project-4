@@ -28,6 +28,7 @@ public static class MauiProgram
         {
             client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
         });
+        
         builder.Services.AddSingleton<AuthService>();
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<LoginPage>();
