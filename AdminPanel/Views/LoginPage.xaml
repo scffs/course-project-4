@@ -6,20 +6,18 @@
              x:Class="AdminPanel.Views.LoginPage"
              Title="Login" x:DataType="login:LoginViewModel"
              BackgroundColor="#121212">
-
   <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#121212">
-    <Entry Placeholder="Логин" Text="{Binding Login}" PlaceholderColor="#BBBBBB" TextColor="#FFFFFF"
-           BackgroundColor="#1E1E1E" />
-    <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" PlaceholderColor="#BBBBBB"
-           TextColor="#FFFFFF" BackgroundColor="#1E1E1E" />
+    <Entry Placeholder="Логин" Text="{Binding Login}" Style="{StaticResource DarkEntryStyle}" />
+    <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" Style="{StaticResource DarkEntryStyle}" />
     <Button Text="Войти" Command="{Binding LoginCommand}"
             IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
-            BackgroundColor="#6200EE" TextColor="#FFFFFF" />
+            Style="{StaticResource DarkButtonStyle}" />
 
-    <Label Text="{Binding ErrorMessage}" TextColor="#CF6679"
-           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" />
+    <Label Text="{Binding ErrorMessage}"
+           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
+           Style="{StaticResource DarkLabelStyle}" />
 
     <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
-                       Color="#FFFFFF" />
+                       Style="{StaticResource DarkActivityIndicatorStyle}" />
   </VerticalStackLayout>
 </ContentPage>
