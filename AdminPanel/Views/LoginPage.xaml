@@ -4,17 +4,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:login="clr-namespace:AdminPanel.ViewModels.Login"
              x:Class="AdminPanel.Views.LoginPage"
-             Title="Login" x:DataType="login:LoginViewModel">
+             Title="Login" x:DataType="login:LoginViewModel"
+             BackgroundColor="#121212">
 
-  <VerticalStackLayout Padding="20" Spacing="15">
-    <Entry Placeholder="Логин" Text="{Binding Login}" />
-    <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" />
+  <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#121212">
+    <Entry Placeholder="Логин" Text="{Binding Login}" PlaceholderColor="#BBBBBB" TextColor="#FFFFFF"
+           BackgroundColor="#1E1E1E" />
+    <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" PlaceholderColor="#BBBBBB"
+           TextColor="#FFFFFF" BackgroundColor="#1E1E1E" />
     <Button Text="Войти" Command="{Binding LoginCommand}"
-            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}" />
+            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+            BackgroundColor="#6200EE" TextColor="#FFFFFF" />
 
-    <Label Text="{Binding ErrorMessage}" TextColor="Red"
+    <Label Text="{Binding ErrorMessage}" TextColor="#CF6679"
            IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" />
 
-    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                       Color="#FFFFFF" />
   </VerticalStackLayout>
 </ContentPage>
