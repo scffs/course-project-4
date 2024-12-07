@@ -1,9 +1,10 @@
 ﻿using System;
 using AdminPanel.Services;
-using AdminPanel.ViewModels;
+using AdminPanel.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Hosting;
+using LoginViewModel = AdminPanel.ViewModels.Login.LoginViewModel;
 
 namespace AdminPanel;
 

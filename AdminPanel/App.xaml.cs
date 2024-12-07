@@ -1,9 +1,10 @@
-﻿using Microsoft.Maui.Controls;
+﻿using AdminPanel.Views;
+using AdminPanel.Views.Base;
 using Microsoft.Maui.Storage;
 
 namespace AdminPanel;
 
-public partial class App : Application
+public partial class App
 {
     public App()
     {
@@ -11,14 +12,14 @@ public partial class App : Application
         MainPage = new LoadingPage();
     }
 
-    protected override async void OnStart()
+    protected override void OnStart()
     {
         base.OnStart();
 
         var token = Preferences.Get("auth_token", string.Empty);
 
         if (string.IsNullOrEmpty(token))
-            MainPage = new NavigationPage(MauiProgram.ServiceProvider.GetRequiredService<LoginPage>());
+            MainPage = new NavigationPage(MauiProgram.ServiceProvider?.GetRequiredService<LoginPage>());
         else
             MainPage = new AppShell();
     }
