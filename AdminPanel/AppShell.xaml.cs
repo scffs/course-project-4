@@ -1,8 +1,6 @@
-﻿using Microsoft.Maui.Controls;
+﻿namespace AdminPanel;
 
-namespace AdminPanel;
-
-public partial class AppShell : Shell
+public partial class AppShell
 {
     public AppShell()
     {
