@@ -3,7 +3,8 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using UserPanel.Models;
+using UserPanel.Models.Request;
+using UserPanel.Models.Response;
 
 namespace UserPanel.Services;
 
@@ -18,10 +19,10 @@ public class AuthService
 
     public async Task<AuthResponse> LoginAsync(string login, string password)
     {
-        if (string.IsNullOrWhiteSpace(login)) throw new ArgumentNullException(nameof(login));
-        if (string.IsNullOrWhiteSpace(password)) throw new ArgumentNullException(nameof(password));
+        if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password)) throw new ArgumentNullException(nameof(login));
 
-        var payload = new { login, password };
+        var payload = new LoginRequest(login, password);
+
         var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
 
         try

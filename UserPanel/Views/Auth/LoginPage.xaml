@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UserPanel.Views.Auth.LoginPage"
-             Title="LoginPage"
+             Title="Login"
              BackgroundColor="Black">
 
     <ContentPage.Content>
@@ -62,6 +62,8 @@
 
                     <!-- Кнопка Войти -->
                     <Button Text="Войти"
+                            Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                             TextColor="White"
                             BackgroundColor="#FF5722"
                             CornerRadius="20"
@@ -69,9 +71,11 @@
                             HorizontalOptions="FillAndExpand"
                             FontAttributes="Bold"
                             Margin="0,20,0,0" />
-                    
+
                     <Label Text="{Binding ErrorMessage}" TextColor="Red"
-                    IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" />
+                           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"/>
+                    
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
 
                     <!-- Ссылка для регистрации -->
                     <HorizontalStackLayout HorizontalOptions="Center">

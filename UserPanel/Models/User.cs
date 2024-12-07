@@ -1,16 +1,31 @@
-using System;
+using System.Numerics;
+using System.Text.Json.Serialization;
 
 namespace UserPanel.Models;
 
 public class User
 {
-    public string Name { get; set; }
-    public string Surname { get; set; }
-    public string Patronymic { get; set; }
-    public bool Sex { get; set; }
-    public DateTime Birthday { get; set; }
-    public string Status { get; set; }
-    public string Login { get; set; }
-    public string AvatarUrl { get; set; }
-    public string RoleId { get; set; }
+    [JsonPropertyName("id")] public required BigInteger Id { get; set; }
+
+    [JsonPropertyName("name")] public required string Name { get; set; }
+
+    [JsonPropertyName("surname")] public required string Surname { get; set; }
+
+    [JsonPropertyName("patronymic")] public string? Patronymic { get; set; }
+
+    [JsonPropertyName("sex")] public required bool Sex { get; set; }
+
+    [JsonPropertyName("birthday")] public required DateTime Birthday { get; set; }
+
+    [JsonPropertyName("status")] public string? Status { get; set; }
+
+    [JsonPropertyName("login")] public required string Login { get; set; }
+
+    [JsonPropertyName("avatar_url")] public string? AvatarUrl { get; set; }
+
+    [JsonPropertyName("role_id")] public required string RoleId { get; set; }
+
+    [JsonPropertyName("created_at")] public required DateTime CreatedAt { get; set; }
+
+    [JsonPropertyName("updated_at")] public required DateTime UpdatedAt { get; set; }
 }

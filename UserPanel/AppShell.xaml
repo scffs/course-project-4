@@ -6,8 +6,7 @@
     Shell.FlyoutBehavior="Disabled"
     Title="UserPanel">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:LoginPage}"
-        Route="LoginPage" />
+    <ShellContent Title="Главная" ContentTemplate="{DataTemplate base:MainPage}" />
+    <!--<ShellContent Title="Профиль" ContentTemplate="{DataTemplate profile:ProfilePage}" />
+    <ShellContent Title="Статьи" ContentTemplate="{DataTemplate articles:ArticlesPage}" />-->
 </Shell>

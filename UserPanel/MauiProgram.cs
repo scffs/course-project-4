@@ -10,6 +10,8 @@ namespace UserPanel
 {
     public static class MauiProgram
     {
+        public static IServiceProvider? ServiceProvider { get; private set; }
+
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
@@ -26,9 +28,17 @@ namespace UserPanel
             {
                 client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
             });
-            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddSingleton<RegisterService>();
             builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<RegisterPage>();
+
+            builder.Services.AddHttpClient<AuthService>(client =>
+            {
+                client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
+            });
+            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<LoginPage>();
 
             var app = builder.Build();
 

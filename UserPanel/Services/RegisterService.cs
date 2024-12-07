@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using UserPanel.Models;
+using UserPanel.Models.Response;
 
 namespace UserPanel.Services;
 
@@ -22,8 +23,8 @@ public class RegisterService
     {
         if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
         if (string.IsNullOrWhiteSpace(surname)) throw new ArgumentNullException(nameof(surname));
-        if (bool.IsNullOrWhiteSpace(sex)) throw new ArgumentNullException(nameof(sex));
-        if (DateTime.IsNullOrWhiteSpace(birthday)) throw new ArgumentNullException(nameof(birthday));
+        //if (bool.IsNullOrWhiteSpace(sex)) throw new ArgumentNullException(nameof(sex));
+        //if (DateTime.IsNullOrWhiteSpace(birthday)) throw new ArgumentNullException(nameof(birthday));
         if (string.IsNullOrWhiteSpace(login)) throw new ArgumentNullException(nameof(login));
         if (string.IsNullOrWhiteSpace(password)) throw new ArgumentNullException(nameof(password));
         if (string.IsNullOrWhiteSpace(avatarUrl)) throw new ArgumentNullException(nameof(avatarUrl));
@@ -33,7 +34,7 @@ public class RegisterService
 
         try
         {
-            var response = await _httpClient.PostAsync("auth/admin/register", content);
+            var response = await _httpClient.PostAsync("auth/register", content);
 
             if (!response.IsSuccessStatusCode) throw new Exception($"Ошибка авторизации: {response.StatusCode}");
 
