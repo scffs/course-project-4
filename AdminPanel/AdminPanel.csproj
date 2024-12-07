@@ -65,9 +65,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiXaml Update="Views\Articles\ArticlesPage.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
       <MauiXaml Update="Views\Profile\ProfilePage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
@@ -83,10 +80,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Views\Articles\ArticlesPage.xaml.cs">
-        <DependentUpon>ArticlesPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="Views\Profile\ProfilePage.xaml.cs">
         <DependentUpon>ProfilePage.xaml</DependentUpon>
         <SubType>Code</SubType>
