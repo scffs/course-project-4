@@ -26,7 +26,6 @@ public partial class LoginViewModel(AuthService authService) : ObservableObject
             if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
                 throw new InvalidDataException("Invalid login or password");
             
-            
             var authResponse = await authService.LoginAsync(Login, Password);
 
             if (string.IsNullOrEmpty(authResponse.Token))
