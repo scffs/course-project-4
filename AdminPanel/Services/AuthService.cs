@@ -2,7 +2,7 @@ using AdminPanel.Models.Response;
 
 namespace AdminPanel.Services;
 
-public abstract class AuthService(HttpClient httpClient) : BaseService(httpClient)
+public class AuthService(HttpClient httpClient) : BaseService(httpClient)
 {
   public async Task<AuthResponse> LoginAsync(string login, string password)
   {
