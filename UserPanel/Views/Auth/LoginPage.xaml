@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UserPanel.Views.Auth.LoginPage"
+             Title="Login"
+             BackgroundColor="Black">
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="20"
+                                     Padding="20">
+
+                    <!-- Логотип с обработчиком касания -->
+                    <Image Source="biglogo.png" HeightRequest="100">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBigLogoTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <!-- Заголовок -->
+                    <Label Text="Вход"
+                           TextColor="White"
+                           FontSize="24"
+                           HorizontalOptions="Center" />
+
+                    <!-- Поля ввода -->
+                        <Entry Placeholder="Логин" 
+                               Text="{Binding Login}"
+                               TextColor="White"
+                               PlaceholderColor="White"
+                               BackgroundColor="#FF5722"
+                               HeightRequest="40"
+                               WidthRequest="250"
+                               Margin="10,0" />
+
+                        <Entry Placeholder="Пароль"
+                               IsPassword="True"
+                               Text="{Binding Password}"
+                               TextColor="White"
+                               PlaceholderColor="White"
+                               BackgroundColor="#FF5722"
+                               HeightRequest="40"
+                               WidthRequest="250"
+                               Margin="10,0" />
+
+                    <!-- Кнопка Войти -->
+                    <Button Text="Войти"
+                            Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+                            TextColor="White"
+                            BackgroundColor="#FF5722"
+                            CornerRadius="20"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            FontAttributes="Bold"
+                            Margin="0,20,0,0" />
+
+                    <Label WidthRequest="270" Text="{Binding ErrorMessage}" TextColor="Red"
+                           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"/>
+                    
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+
+                    <!-- Ссылка для регистрации -->
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Text="Нет аккаунта?"
+                               FontSize="14"
+                               TextColor="White" />
+                        <Button Text=" Зарегистрируйся"
+                                Clicked="ToRegisterPage"
+                                FontSize="14"
+                                TextColor="#2196F3">
+                        </Button>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

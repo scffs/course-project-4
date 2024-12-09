@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdminPanel.LoginPage"
+             Title="Login">
+
+  <VerticalStackLayout Padding="20" Spacing="15">
+    <Entry Placeholder="Логин" Text="{Binding Login}" />
+    <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" />
+    <Button Text="Войти" Command="{Binding LoginCommand}"
+            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}" />
+
+    <Label Text="{Binding ErrorMessage}" TextColor="Red"
+           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" />
+
+    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+  </VerticalStackLayout>
+</ContentPage>
