@@ -77,6 +77,9 @@
       <MauiXaml Update="Views\LoginPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
+      <MauiXaml Update="Views\LoadingPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
@@ -94,6 +97,10 @@
       </Compile>
       <Compile Update="Views\LoginPage.xaml.cs">
         <DependentUpon>LoginPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\LoadingPage.xaml.cs">
+        <DependentUpon>LoadingPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

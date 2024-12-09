@@ -1,6 +1,6 @@
-namespace AdminPanel;
+namespace AdminPanel.Views;
 
-public partial class LoadingPage : ContentPage
+public partial class LoadingPage
 {
     public LoadingPage()
     {
