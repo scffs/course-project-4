@@ -1,8 +1,8 @@
-using AdminPanel.Models.Response;
+using UserPanel.Models.Response;
 
-namespace AdminPanel.Services;
+namespace UserPanel.Services;
 
-public class AuthService(HttpClient httpClient) : BaseService(httpClient)
+public abstract class AuthService(HttpClient httpClient) : BaseService(httpClient)
 {
   public async Task<AuthResponse> LoginAsync(string login, string password)
   {

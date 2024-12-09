@@ -1,10 +1,10 @@
 ﻿namespace UserPanel
 {
-    public partial class AppShell : Shell
+  public partial class AppShell
+  {
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+      InitializeComponent();
     }
+  }
 }
