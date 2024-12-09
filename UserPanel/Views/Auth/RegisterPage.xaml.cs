@@ -1,14 +1,14 @@
 namespace UserPanel.Views.Auth;
 
-public partial class RegisterPage : ContentPage
+public partial class RegisterPage
 {
-	public RegisterPage()
-	{
-		InitializeComponent();
+  public RegisterPage()
+  {
+    InitializeComponent();
+  }
 
-	}
-    private void OnBigLogoTapped(object sender, TappedEventArgs e)
-    {
-        DisplayAlert("Больно!", "Себе в глаз тыкни :(", "ОК");
-    }
+  private void OnBigLogoTapped(object sender, TappedEventArgs e)
+  {
+    DisplayAlert("пїЅпїЅпїЅпїЅпїЅпїЅ!", "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ :(", "пїЅпїЅ");
+  }
 }

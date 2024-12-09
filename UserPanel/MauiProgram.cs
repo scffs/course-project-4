@@ -1,50 +1,41 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
+﻿using Microsoft.Extensions.Logging;
 using UserPanel.Services;
 using UserPanel.ViewModels;
 using UserPanel.Views.Auth;
 
 namespace UserPanel
 {
-    public static class MauiProgram
+  public static class MauiProgram
+  {
+    public static IServiceProvider? ServiceProvider { get; private set; }
+
+    public static MauiApp CreateMauiApp()
     {
-        public static IServiceProvider? ServiceProvider { get; private set; }
-
-        public static MauiApp CreateMauiApp()
+      var builder = MauiApp.CreateBuilder();
+      builder
+        .UseMauiApp<App>()
+        .ConfigureFonts(fonts =>
         {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+          fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+          fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+        });
+      builder.Logging.AddDebug();
 
-            // Регистрация сервисов
-            builder.Services.AddHttpClient<RegisterService>(client =>
-            {
-                client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
-            });
-            builder.Services.AddSingleton<RegisterService>();
-            builder.Services.AddTransient<RegisterViewModel>();
-            builder.Services.AddTransient<RegisterPage>();
+      // Регистрация сервисов
+      builder.Services.AddApiHttpClient<RegisterService>("http://127.0.0.1:8000/api/");
+      builder.Services.AddApiHttpClient<AuthService>("http://127.0.0.1:8000/api/");
 
-            builder.Services.AddHttpClient<AuthService>(client =>
-            {
-                client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
-            });
-            builder.Services.AddSingleton<AuthService>();
-            builder.Services.AddTransient<LoginViewModel>();
-            builder.Services.AddTransient<LoginPage>();
+      builder.Services.AddTransient<LoginPage>();
+      builder.Services.AddTransient<RegisterPage>();
 
-            var app = builder.Build();
+      builder.Services.AddTransient<LoginViewModel>();
+      builder.Services.AddTransient<RegisterViewModel>();
 
-            ServiceProvider = app.Services;
+      var app = builder.Build();
 
-            return app;
-        }
+      ServiceProvider = app.Services;
+
+      return app;
     }
+  }
 }

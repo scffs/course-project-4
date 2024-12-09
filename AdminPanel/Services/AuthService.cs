@@ -8,15 +8,8 @@ using AdminPanel.Models.Response;
 
 namespace AdminPanel.Services;
 
-public class AuthService
+public class AuthService(HttpClient httpClient)
 {
-    private readonly HttpClient _httpClient;
-
-    public AuthService(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
-
     public async Task<AuthResponse> LoginAsync(string login, string password)
     {
         if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password)) throw new ArgumentNullException(nameof(login));
@@ -27,7 +20,7 @@ public class AuthService
 
         try
         {
-            var response = await _httpClient.PostAsync("auth/admin/login", content);
+            var response = await httpClient.PostAsync("auth/admin/login", content);
 
             if (!response.IsSuccessStatusCode) throw new Exception($"Ошибка авторизации: {response.StatusCode}");
 

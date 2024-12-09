@@ -2,11 +2,12 @@
   x:Class="UserPanel.AppShell"
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  xmlns:userPanel="clr-namespace:UserPanel"
+  xmlns:auth="clr-namespace:UserPanel.Views.Auth"
   FlyoutBehavior="Disabled"
   Title="UserPanel">
 
-  <ShellContent Title="фыв" ContentTemplate="{DataTemplate userPanel:MainPage}" />
-  <!--<ShellContent Title="�������" ContentTemplate="{DataTemplate profile:ProfilePage}" />
-    <ShellContent Title="������" ContentTemplate="{DataTemplate articles:ArticlesPage}" />-->
+  <FlyoutItem>
+    <ShellContent Route="Login" ContentTemplate="{DataTemplate auth:LoginPage}" />
+    <ShellContent Route="Register" ContentTemplate="{DataTemplate auth:RegisterPage}" />
+  </FlyoutItem>
 </Shell>

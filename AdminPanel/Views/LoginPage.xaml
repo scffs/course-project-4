@@ -7,17 +7,30 @@
              Title="Login" x:DataType="login:LoginViewModel"
              BackgroundColor="#121212">
   <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#121212">
-    <Entry Placeholder="Логин" Text="{Binding Login}" Style="{StaticResource DarkEntryStyle}" />
-    <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" Style="{StaticResource DarkEntryStyle}" />
-    <Button Text="Войти" Command="{Binding LoginCommand}"
-            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
-            Style="{StaticResource DarkButtonStyle}" />
+    <Entry
+      Placeholder="Логин"
+      Text="{Binding Login}"
+      Style="{StaticResource DarkEntryStyle}" />
+    
+    <Entry
+      Placeholder="Пароль"
+      Text="{Binding Password}"
+      IsPassword="True"
+      Style="{StaticResource DarkEntryStyle}" />
+    
+    <Button
+      Text="Войти" Command="{Binding LoginCommand}"
+      IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+      Style="{StaticResource DarkButtonStyle}" />
 
-    <Label Text="{Binding ErrorMessage}"
-           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
-           Style="{StaticResource DarkLabelStyle}" />
+    <Label
+      Text="{Binding ErrorMessage}"
+      IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
+      Style="{StaticResource DarkLabelStyle}" />
 
-    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
-                       Style="{StaticResource DarkActivityIndicatorStyle}" />
+    <ActivityIndicator
+      IsRunning="{Binding IsBusy}"
+      IsVisible="{Binding IsBusy}"
+      Style="{StaticResource DarkActivityIndicatorStyle}" />
   </VerticalStackLayout>
 </ContentPage>
