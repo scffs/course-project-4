@@ -1,44 +1,19 @@
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using AdminPanel.Models.Request;
 using AdminPanel.Models.Response;
 
 namespace AdminPanel.Services;
 
-public class AuthService(HttpClient httpClient)
+public abstract class AuthService(HttpClient httpClient) : BaseService(httpClient)
 {
-    public async Task<AuthResponse> LoginAsync(string login, string password)
-    {
-        if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password)) throw new ArgumentNullException(nameof(login));
+  public async Task<AuthResponse> LoginAsync(string login, string password)
+  {
+    if (string.IsNullOrWhiteSpace(login))
+      throw new ArgumentNullException(nameof(login));
 
-        var payload = new LoginRequest(login, password);
-        
-        var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+    if (string.IsNullOrWhiteSpace(password))
+      throw new ArgumentNullException(nameof(password));
 
-        try
-        {
-            var response = await httpClient.PostAsync("auth/admin/login", content);
+    var payload = new { login, password };
 
-            if (!response.IsSuccessStatusCode) throw new Exception($"Ошибка авторизации: {response.StatusCode}");
-
-            var responseBody = await response.Content.ReadAsStringAsync();
-
-            var result = JsonSerializer.Deserialize<AuthResponse>(responseBody, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
-
-            if (result == null) throw new Exception("Ошибка обработки ответа сервера.");
-
-            return result;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            throw new Exception($"Сетевая ошибка: {ex.Message}");
-        }
-    }
+    return await PostAsync<AuthResponse>("auth/login", payload);
+  }
 }

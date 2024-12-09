@@ -24,11 +24,8 @@ public static class MauiProgram
             });
 
         // Регистрация сервисов
-        builder.Services.AddHttpClient<AuthService>(client =>
-        {
-            client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
-        });
-        
+        builder.Services.AddApiHttpClient<AuthService>("http://127.0.0.1:8000/api/admin");
+
         builder.Services.AddSingleton<AuthService>();
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<LoginPage>();
