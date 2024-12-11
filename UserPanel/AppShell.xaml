@@ -6,10 +6,10 @@
   FlyoutBehavior="Disabled"
   Title="UserPanel">
 
-    <!--<ShellContent Title="Ëîãèí" ContentTemplate="{DataTemplate views:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>-->
-    <TabBar>
-        <ShellContent Title="Ãëàâíàÿ" ContentTemplate="{DataTemplate base:MainPage}" Route="MainPage"/>
-        <ShellContent Title="Ïðîôèëü" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
-        <ShellContent Title="Ñòàòüè" ContentTemplate="{DataTemplate articles:ArticlesPage}" Route="ArticlesPage"/>
-    </TabBar>
+  <ShellContent Title="Ñ„Ð²" ContentTemplate="{DataTemplate auth:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>
+  <TabBar>
+    <!-- <ShellContent Title="Ñ„Ñ‹Ð²" ContentTemplate="{DataTemplate base:MainPage}" Route="MainPage"/> -->
+    <!-- <ShellContent Title="Ñ„Ñ‹Ð²" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/> -->
+    <!-- <ShellContent Title="Ñ„Ñ‹Ð²" ContentTemplate="{DataTemplate articles:ArticlesPage}" Route="ArticlesPage"/> -->
+  </TabBar>
 </Shell>
