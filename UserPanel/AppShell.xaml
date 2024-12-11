@@ -4,13 +4,14 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   xmlns:auth="clr-namespace:UserPanel.Views.Auth"
   xmlns:views="clr-namespace:UserPanel.Views"
+  xmlns:profile="clr-namespace:UserPanel.Views.Profile"
   FlyoutBehavior="Disabled"
   Title="UserPanel">
 
     <ShellContent Title="ad" ContentTemplate="{DataTemplate auth:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>
     <TabBar>
         <ShellContent Title="ad" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage"/>
-        <!--<ShellContent Title="ad" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
-        <ShellContent Title="ad" ContentTemplate="{DataTemplate articles:ArticlesPage}" Route="ArticlesPage"/>-->
+        <ShellContent Title="ad" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
+        <!--<ShellContent Title="ad" ContentTemplate="{DataTemplate articles:ArticlesPage}" Route="ArticlesPage"/>-->
     </TabBar>
 </Shell>
