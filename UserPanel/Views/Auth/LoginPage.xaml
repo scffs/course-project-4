@@ -7,30 +7,26 @@
              x:Class="UserPanel.Views.Auth.LoginPage"
              BackgroundColor="Black" x:DataType="viewModels:LoginViewModel">
 
-  <ContentPage.Content>
-    <Grid>
-      <ScrollView>
-        <VerticalStackLayout VerticalOptions="Center"
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <VerticalStackLayout VerticalOptions="Center"
                              HorizontalOptions="Center"
                              Spacing="20"
                              Padding="20">
 
-          <!-- Логотип с обработчиком касания -->
-          <Image Source="biglogo.png" HeightRequest="100">
-            <Image.GestureRecognizers>
-              <TapGestureRecognizer Tapped="OnBigLogoTapped" />
-            </Image.GestureRecognizers>
-          </Image>
+                    <Image Source="biglogo.png" HeightRequest="100">
+                    </Image>
 
-          <!-- Заголовок -->
-          <Label Text="Вход"
+                    <!-- Заголовок -->
+                    <Label Text="Вход"
                  TextColor="White"
                  FontSize="24"
                  HorizontalOptions="Center" />
 
-          <!-- Поля ввода -->
+                    <!-- Поля ввода -->
 
-          <Entry Placeholder="Логин"
+                    <Entry Placeholder="Логин"
                  Text="{Binding Login}"
                  TextColor="White"
                  PlaceholderColor="Gray"
@@ -40,7 +36,7 @@
                  Margin="10,0" />
 
 
-          <Entry Placeholder="Пароль"
+                    <Entry Placeholder="Пароль"
                  IsPassword="True"
                  Text="{Binding Password}"
                  TextColor="White"
@@ -50,8 +46,8 @@
                  WidthRequest="250"
                  Margin="10,0" />
 
-          <!-- Кнопка Войти -->
-          <Button Text="Войти"
+                    <!-- Кнопка Войти -->
+                    <Button Text="Войти"
                   Command="{Binding LoginCommand}"
                   IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                   TextColor="White"
@@ -62,24 +58,24 @@
                   FontAttributes="Bold"
                   Margin="0,20,0,0" />
 
-          <Label WidthRequest="270" Text="{Binding ErrorMessage}" TextColor="Red"
+                    <Label WidthRequest="270" Text="{Binding ErrorMessage}" TextColor="Red"
                  IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" />
 
-          <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
-          <!-- Ссылка для регистрации -->
-          <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="Нет аккаунта?"
+                    <!-- Ссылка для регистрации -->
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Text="Нет аккаунта?"
                    FontSize="14"
                    TextColor="White" />
-            <Button Text=" Зарегистрируйся"
+                        <Button Text=" Зарегистрируйся"
                     Clicked="ToRegisterPage"
                     FontSize="14"
                     TextColor="#2196F3">
-            </Button>
-          </HorizontalStackLayout>
-        </VerticalStackLayout>
-      </ScrollView>
-    </Grid>
-  </ContentPage.Content>
+                        </Button>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
