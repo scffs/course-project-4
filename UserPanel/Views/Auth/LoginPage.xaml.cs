@@ -13,6 +13,6 @@ public partial class LoginPage
 
     private async void ToRegisterPage(object? sender, EventArgs e)
     {
-        await Navigation.PushAsync(new RegisterPage());
+        await Shell.Current.GoToAsync("//RegisterPage");
     }
 }

@@ -31,6 +31,11 @@
 
     <ContentPage.Content>
         <ScrollView>
+            <Button Text="Назад"
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Start"
+                        Clicked="OnBackButtonClicked"/>
             <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="12" Padding="20">
                 <Image Source="biglogo.png" HeightRequest="100">
                 </Image>

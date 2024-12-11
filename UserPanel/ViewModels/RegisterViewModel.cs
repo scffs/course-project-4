@@ -1,6 +1,6 @@
 ﻿namespace UserPanel.ViewModels
 {
-    class RegisterViewModel
+    public class RegisterViewModel
     {
     }
 }

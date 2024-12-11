@@ -9,6 +9,7 @@
   Title="UserPanel">
 
     <ShellContent Title="ad" ContentTemplate="{DataTemplate auth:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>
+    <ShellContent Title="ad" ContentTemplate="{DataTemplate auth:RegisterPage}" Route="RegisterPage" Shell.TabBarIsVisible="False"/>
     <TabBar>
         <ShellContent Title="ad" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage"/>
         <ShellContent Title="ad" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
