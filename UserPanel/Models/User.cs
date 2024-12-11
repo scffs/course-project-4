@@ -5,7 +5,7 @@ namespace UserPanel.Models;
 
 public class User
 {
-    [JsonPropertyName("id")] public required BigInteger Id { get; set; }
+    [JsonPropertyName("id")] public required ulong Id { get; set; }
 
     [JsonPropertyName("name")] public required string Name { get; set; }
 
@@ -23,7 +23,7 @@ public class User
 
     [JsonPropertyName("avatar_url")] public string? AvatarUrl { get; set; }
 
-    [JsonPropertyName("role_id")] public required string RoleId { get; set; }
+    [JsonPropertyName("role_id")] public required ulong RoleId { get; set; }
 
     [JsonPropertyName("created_at")] public required DateTime CreatedAt { get; set; }
 

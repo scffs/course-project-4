@@ -10,7 +10,6 @@ public class BaseService
   protected BaseService(HttpClient httpClient)
   {
     _httpClient = httpClient;
-    Console.WriteLine("asd");
     Console.WriteLine(httpClient);
     if (_httpClient.BaseAddress == null)
     {

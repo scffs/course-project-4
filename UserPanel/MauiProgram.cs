@@ -26,6 +26,7 @@ namespace UserPanel
       builder.Services.AddApiHttpClient<AuthService>("http://127.0.0.1:8000/api/");
 
       builder.Services.AddTransient<LoginPage>();
+      builder.Services.AddTransient<BaseService>();
       builder.Services.AddTransient<RegisterPage>();
 
       builder.Services.AddTransient<LoginViewModel>();

@@ -6,8 +6,10 @@
   FlyoutBehavior="Disabled"
   Title="UserPanel">
 
-  <FlyoutItem>
-    <ShellContent Route="Login" ContentTemplate="{DataTemplate auth:LoginPage}" />
-    <ShellContent Route="Register" ContentTemplate="{DataTemplate auth:RegisterPage}" />
-  </FlyoutItem>
+    <!--<ShellContent Title="Логин" ContentTemplate="{DataTemplate views:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>-->
+    <TabBar>
+        <ShellContent Title="Главная" ContentTemplate="{DataTemplate base:MainPage}" Route="MainPage"/>
+        <ShellContent Title="Профиль" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
+        <ShellContent Title="Статьи" ContentTemplate="{DataTemplate articles:ArticlesPage}" Route="ArticlesPage"/>
+    </TabBar>
 </Shell>
