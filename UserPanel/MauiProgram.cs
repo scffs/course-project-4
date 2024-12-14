@@ -2,6 +2,7 @@
 using UserPanel.Services;
 using UserPanel.ViewModels;
 using UserPanel.Views.Auth;
+using UserPanel.Views.Profile;
 
 namespace UserPanel
 {
@@ -32,7 +33,10 @@ namespace UserPanel
       builder.Services.AddTransient<LoginViewModel>();
       builder.Services.AddTransient<RegisterViewModel>();
 
-      var app = builder.Build();
+            builder.Services.AddTransient<ProfilePage>();
+            builder.Services.AddTransient<ProfileViewModel>();
+
+            var app = builder.Build();
 
       ServiceProvider = app.Services;
 

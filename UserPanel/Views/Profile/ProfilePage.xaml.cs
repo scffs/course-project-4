@@ -1,13 +1,16 @@
+using UserPanel.ViewModels;
+
 namespace UserPanel.Views.Profile;
 
 public partial class ProfilePage
 {
-  public ProfilePage()
-  {
-    InitializeComponent();
-  }
+    public ProfilePage(ProfileViewModel viewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
 
-  private async void OnLogoutClicked(object sender, EventArgs e)
+    private async void OnLogoutClicked(object sender, EventArgs e)
   {
     try
     {
