@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="UserPanel.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:UserPanel"
-    Shell.FlyoutBehavior="Disabled"
-    Title="UserPanel">
+  x:Class="UserPanel.AppShell"
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:auth="clr-namespace:UserPanel.Views.Auth"
+  FlyoutBehavior="Disabled"
+  Title="UserPanel">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+  <ShellContent Title="фв" ContentTemplate="{DataTemplate auth:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>
+  <TabBar>
+    <!-- <ShellContent Title="фыв" ContentTemplate="{DataTemplate base:MainPage}" Route="MainPage"/> -->
+    <!-- <ShellContent Title="фыв" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/> -->
+    <!-- <ShellContent Title="фыв" ContentTemplate="{DataTemplate articles:ArticlesPage}" Route="ArticlesPage"/> -->
+  </TabBar>
 </Shell>

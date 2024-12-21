@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Item\StoreItemRequest;
-use App\Http\Requests\Item\UpdateItemRequest;
-use App\Models\Item\Item;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 
@@ -14,36 +13,18 @@ class ProfileController extends Controller
 
   public function __construct()
   {
-    $this->authorizeResource(Item::class, 'item');
+    $this->authorizeResource(User::class, 'profile');
   }
 
-  public function index(): JsonResponse
+  // profile - то, какой юзер обновляется
+  public function show(User $profile): JsonResponse
   {
-    $items = Item::with('itemCategory')->get();
-    return response()->json($items);
+    return response()->json($profile);
   }
 
-  public function store(StoreItemRequest $request): JsonResponse
+  public function update(UpdateUserRequest $request, User $profile): JsonResponse
   {
-    $item = Item::create($request->validated());
-    return response()->json($item, 201);
-  }
-
-  public function show(Item $item): JsonResponse
-  {
-    $item->load('itemCategory');
-    return response()->json($item);
-  }
-
-  public function update(UpdateItemRequest $request, Item $item): JsonResponse
-  {
-    $item->update($request->validated());
-    return response()->json($item);
-  }
-
-  public function destroy(Item $item): JsonResponse
-  {
-    $item->delete();
-    return response()->json(null, 204);
+    $profile->update($request->validated());
+    return response()->json($profile);
   }
 }
