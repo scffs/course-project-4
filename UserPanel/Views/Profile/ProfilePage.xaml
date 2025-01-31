@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:UserPanel.ViewModels"
+             xmlns:helpers="clr-namespace:UserPanel.Helpers"
+             x:Class="UserPanel.Views.Profile.ProfilePage"
+             Title="Профиль"
+             x:DataType="viewModels:ProfileViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:SexToStringConverter x:Key="SexToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
+                <!-- Аватар -->
+                <Image Source="{Binding CurrentUser.AvatarUrl}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="Center">
+                    <Image.Triggers>
+                        <DataTrigger TargetType="Image" Binding="{Binding CurrentUser.AvatarUrl}" Value="{x:Null}">
+                            <Setter Property="Source" Value="default_avatar.png"/>
+                        </DataTrigger>
+                    </Image.Triggers>
+                </Image>
+                <!-- ФИО в одну линию -->
+                <Label FontSize="24" HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding CurrentUser.Surname}" />
+                            <Span Text=" " />
+                            <Span Text="{Binding CurrentUser.Name}" />
+                            <Span Text=" " />
+                            <Span Text="{Binding CurrentUser.Patronymic}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <!-- Дата рождения -->
+                <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                    <Label Text="Дата рождения:" FontSize="24" VerticalOptions="Center" />
+                    <Label Text="{Binding CurrentUser.Birthday, StringFormat='{0:dd.MM.yyyy}'}" FontSize="24" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <!-- Пол -->
+                <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                    <Label Text="Пол:" FontSize="24" VerticalOptions="Center" />
+                    <Label Text="{Binding CurrentUser.Sex, Converter={StaticResource SexToStringConverter}}" FontSize="24" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <!-- Статус -->
+                <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                    <Label Text="Статус:" FontSize="24" VerticalOptions="Center" />
+                    <Label Text="{Binding CurrentUser.Status}" FontSize="24" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <!-- Логин -->
+                <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                    <Label Text="Логин:" FontSize="24" VerticalOptions="Center" />
+                    <Label Text="{Binding CurrentUser.Login}" FontSize="24" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <!-- Кнопки -->
+                <Button Text="Редактировать профиль"
+                        Command="{Binding EditProfileCommand}"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="20"
+                        WidthRequest="200"
+                        HorizontalOptions="Center" />
+                <Button Text="Выйти из аккаунта"
+                        Command="{Binding LogoutCommand}"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        CornerRadius="20"
+                        WidthRequest="200"
+                        HorizontalOptions="Center" />
+                <!-- Сообщение об ошибке -->
+                <Label Text="{Binding ErrorMessage}" 
+                       TextColor="Red" 
+                       IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

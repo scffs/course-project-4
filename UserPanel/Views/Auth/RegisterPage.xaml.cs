@@ -1,14 +1,16 @@
+using UserPanel.ViewModels;
+
 namespace UserPanel.Views.Auth;
 
 public partial class RegisterPage
 {
-  public RegisterPage()
-  {
-    InitializeComponent();
-  }
-
-  private void OnBigLogoTapped(object sender, TappedEventArgs e)
-  {
-    DisplayAlert("������!", "���� � ���� ����� :(", "��");
-  }
+    public RegisterPage(RegisterViewModel viewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
+    private async void OnBackButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//LoginPage");
+    }
 }

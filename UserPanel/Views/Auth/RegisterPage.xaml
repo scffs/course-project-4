@@ -1,109 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:UserPanel.ViewModels"
              x:Class="UserPanel.Views.Auth.RegisterPage"
-             Title="RegisterPage"
-             Background="Black">
-  <ContentPage.Resources>
-    <Style x:Key="EntryStyle" TargetType="Entry">
-      <Setter Property="TextColor" Value="White" />
-      <Setter Property="PlaceholderColor" Value="Gray" />
-      <Setter Property="BackgroundColor" Value="Transparent" />
-      <Setter Property="HeightRequest" Value="40" />
-      <Setter Property="WidthRequest" Value="250" />
-      <Setter Property="HorizontalOptions" Value="Center" />
-      <Setter Property="Margin" Value="10,0" />
-    </Style>
-    <Style x:Key="FrameStyle" TargetType="Frame">
-      <Setter Property="BackgroundColor" Value="#1A1A1A" />
-      <Setter Property="BorderColor" Value="White" />
-      <Setter Property="CornerRadius" Value="5" />
-      <Setter Property="HasShadow" Value="False" />
-      <Setter Property="Padding" Value="0" />
-    </Style>
-    <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
-      <Setter Property="TextColor" Value="White" />
-      <Setter Property="VerticalOptions" Value="Center" />
-      <Setter Property="HorizontalOptions" Value="Start" />
-    </Style>
-  </ContentPage.Resources>
-
-  <ContentPage.Content>
-    <ScrollView>
-      <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="12" Padding="20">
-        <!-- Логотип с обработчиком касания -->
-        <Image Source="biglogo.png" HeightRequest="100">
-          <Image.GestureRecognizers>
-            <TapGestureRecognizer Tapped="OnBigLogoTapped" />
-          </Image.GestureRecognizers>
-        </Image>
-
-        <!-- Заголовок -->
-        <Label Text="Регистрация" FontSize="24" TextColor="White" HorizontalOptions="Center" />
-
-        <!-- Поля ввода -->
-        <Frame Style="{StaticResource FrameStyle}">
-          <Entry Placeholder="Имя" Style="{StaticResource EntryStyle}" />
-        </Frame>
-
-        <Frame Style="{StaticResource FrameStyle}">
-          <Entry Placeholder="Фамилия" Style="{StaticResource EntryStyle}" />
-        </Frame>
-
-        <Frame Style="{StaticResource FrameStyle}">
-          <Entry Placeholder="Отчество" Style="{StaticResource EntryStyle}" />
-        </Frame>
-        <Label Text="(Необязательно)" FontSize="12" TextColor="Gray" HorizontalOptions="End" />
-
-        <!-- Пол -->
-        <Grid ColumnDefinitions="Auto, *, Auto" VerticalOptions="Center">
-          <Label Text="Пол" TextColor="White" FontSize="14" HorizontalOptions="Start" Grid.Column="0" Padding="10" />
-          <Frame Style="{StaticResource FrameStyle}" Grid.Column="1" Grid.ColumnSpan="2">
-            <StackLayout Orientation="Horizontal" Spacing="20">
-              <RadioButton Content="Мужской" GroupName="Gender" Style="{StaticResource RadioButtonStyle}"
-                           Margin="10, 0, 0, 0" />
-              <RadioButton Content="Женский" GroupName="Gender" Style="{StaticResource RadioButtonStyle}" />
-            </StackLayout>
-          </Frame>
-        </Grid>
-
-        <!-- День рождения -->
-        <Grid>
-          <Label Text="Дата рождения" TextColor="White" FontSize="14" Padding="10" HorizontalOptions="Start" />
-          <Frame Style="{StaticResource FrameStyle}" WidthRequest="120" Margin="95,0,0,0">
-            <DatePicker TextColor="White" />
-          </Frame>
-        </Grid>
-
-        <!-- Логин -->
-        <Frame Style="{StaticResource FrameStyle}">
-          <Entry Placeholder="Логин" Style="{StaticResource EntryStyle}" />
-        </Frame>
-
-        <!-- Пароль -->
-        <Frame Style="{StaticResource FrameStyle}">
-          <Entry Placeholder="Пароль" IsPassword="True" Style="{StaticResource EntryStyle}" />
-        </Frame>
-
-        <!-- Аватар (загрузка файла) -->
-        <Grid WidthRequest="272">
-          <Button Text="Загрузить аватар" TextColor="White" BackgroundColor="#FF5722" HeightRequest="40"
-                  WidthRequest="150" HorizontalOptions="Start" />
-          <Label Text="(Необязательно)" FontSize="12" TextColor="Gray" HorizontalOptions="End" VerticalOptions="Center" />
-        </Grid>
-
-        <!-- Кнопка Зарегистрироваться -->
-        <Button Text="Зарегистрироваться"
-                TextColor="White"
-                BackgroundColor="#FF5722"
-                CornerRadius="20"
-                HeightRequest="50"
-                WidthRequest="250"
-                HorizontalOptions="Center"
-                FontAttributes="Bold"
-                Margin="0,20,0,0" />
-      </VerticalStackLayout>
-    </ScrollView>
-  </ContentPage.Content>
+             Title="Регистрация"
+             x:DataType="viewModels:RegisterViewModel">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="10" Padding="50" VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Source="biglogo.png" HeightRequest="100"/>
+                <!-- Заголовок -->
+                <Label Text="Регистрация" FontSize="32" HorizontalOptions="Center" />
+                <!-- Поле для имени -->
+                <Entry Placeholder="Имя*" Text="{Binding Name}" WidthRequest="300" HorizontalOptions="Center" />
+                <!-- Поле для фамилии -->
+                <Entry Placeholder="Фамилия*" Text="{Binding Surname}" WidthRequest="300" HorizontalOptions="Center" />
+                <!-- Поле для отчества -->
+                <Entry Placeholder="Отчество" Text="{Binding Patronymic}" WidthRequest="300" HorizontalOptions="Center" />
+                <!-- Выбор пола -->
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <RadioButton Content="Мужской" IsChecked="{Binding IsMale}" />
+                    <RadioButton Content="Женский" IsChecked="{Binding IsFemale}" />
+                </HorizontalStackLayout>
+                <!-- Поле для даты рождения -->
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="Дата рождения" TextColor="White" FontSize="14" VerticalOptions="Center" />
+                    <DatePicker Date="{Binding Birthday}" TextColor="White" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <!-- Поле для логина -->
+                <Entry Placeholder="Логин*" Text="{Binding Login}" WidthRequest="300" HorizontalOptions="Center" />
+                <!-- Поле для пароля -->
+                <Entry Placeholder="Пароль*" Text="{Binding Password}" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" />
+                <!-- Поле для ссылки на аватар -->
+                <Entry Placeholder="Ссылка на аватар" Text="{Binding AvatarUrl}" WidthRequest="300" HorizontalOptions="Center" />
+                <!-- Кнопка регистрации -->
+                <Button Text="Зарегистрироваться" 
+                        Command="{Binding RegisterCommand}" 
+                        BackgroundColor="#2196F3" 
+                        TextColor="White" 
+                        CornerRadius="20" 
+                        WidthRequest="200" 
+                        HorizontalOptions="Center" />
+                <!-- Сообщение об ошибке -->
+                <Label Text="{Binding ErrorMessage}" 
+                       TextColor="Red" 
+                       IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
+                       HorizontalOptions="Center" />
+                <!-- Контейнер для надписи и кнопки входа -->
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Label Text="Уже есть аккаунт?" 
+                           FontSize="16" 
+                           TextColor="Gray" 
+                           VerticalOptions="Center" />
+                    <Button Text="Войти" 
+                            Clicked="OnBackButtonClicked"
+                            BackgroundColor="Transparent" 
+                            TextColor="#2196F3" 
+                            Padding="0" 
+                            VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
