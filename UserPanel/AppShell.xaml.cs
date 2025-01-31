@@ -1,10 +1,14 @@
-﻿namespace UserPanel
+﻿namespace UserPanel;
+
+public partial class AppShell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        var token = Preferences.Get("auth_token", string.Empty);
+
+        GoToAsync(string.IsNullOrEmpty(token) ? "//LoginPage" : "//MainPage");
     }
+
 }

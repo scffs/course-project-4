@@ -1,9 +1,5 @@
-﻿using System;
-using AdminPanel.Services;
+﻿using AdminPanel.Services;
 using AdminPanel.Views;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
 using LoginViewModel = AdminPanel.ViewModels.Login.LoginViewModel;
 
 namespace AdminPanel;
@@ -24,14 +20,11 @@ public static class MauiProgram
             });
 
         // Регистрация сервисов
-        builder.Services.AddHttpClient<AuthService>(client =>
-        {
-            client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
-        });
-        
-        builder.Services.AddSingleton<AuthService>();
-        builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<LoginPage>();
+        builder.Services.AddTransient<BaseService>();
+        builder.Services.AddApiHttpClient<AuthService>("http://127.0.0.1:8000/api/admin");
+
+        builder.Services.AddTransient<LoginViewModel>();
 
         var app = builder.Build();
 

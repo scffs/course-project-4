@@ -23,6 +23,4 @@ Route::protectedResource('abilities', AbilityController::class);
 Route::protectedResource('articles', ArticleController::class);
 Route::protectedResource('comments', CommentController::class);
 Route::protectedResource('items', ItemController::class);
-Route::protectedResource('profile', ProfileController::class, [
-  'only' => ['show', 'update'],
-]);
+Route::protectedResource('profile', ProfileController::class);
