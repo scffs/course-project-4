@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:UserPanel.Models"
+             xmlns:helpers="clr-namespace:UserPanel.Helpers"
+             xmlns:viewModels="clr-namespace:UserPanel.ViewModels"
+             x:Class="UserPanel.Views.Hero.HeroesPage"
+             x:DataType="viewModels:HeroesViewModel"
+             Title="Герои">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:SexToStringConverter x:Key="SexToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
+                <!-- Сообщение об ошибке -->
+                <Label Text="{Binding ErrorMessage}" 
+                       TextColor="Red" 
+                       IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
+                       HorizontalOptions="Center" />
+                <!-- Список героев -->
+                <CollectionView ItemsSource="{Binding Heroes}" VerticalOptions="Start">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Hero">
+                            <Frame CornerRadius="10" Padding="15" WidthRequest="350" HorizontalOptions="Center" Margin="0, 15, 0, 15">
+                                <VerticalStackLayout Spacing="10">
+                                    <!-- Имя героя -->
+                                    <Label Text="{Binding Name}" FontSize="18" HorizontalOptions="Center" FontAttributes="Bold" />
+                                    <Label Text="{Binding Sex, Converter={StaticResource SexToStringConverter}}" FontSize="14" TextColor="Gray" HorizontalOptions="Start" />
+                                    <!-- Фото героя -->
+                                    <Image Source="{Binding PhotoUrl}" Aspect="AspectFill" HeightRequest="200" HorizontalOptions="FillAndExpand">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
+                                                <Setter Property="Source" Value="default_hero.png"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <!-- Описание героя -->
+                                    <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" MaxLines="3" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
+                                    <!-- Характеристики -->
+                                    <Label Text="{Binding Health, StringFormat='Здоровье: {0}'}" FontSize="12" TextColor="DimGray" HorizontalOptions="Start" />
+                                    <Label Text="{Binding DamagePerSec, StringFormat='Урон в секунду: {0:F2}'}" FontSize="12" TextColor="DimGray" HorizontalOptions="Start" />
+                                    <Label Text="{Binding BulletsAmount, StringFormat='Количество пуль: {0}'}" FontSize="12" TextColor="DimGray" HorizontalOptions="Start" />
+                                    <Label Text="{Binding MoveSpeed, StringFormat='Скорость передвижения: {0:F2}'}" FontSize="12" TextColor="DimGray" HorizontalOptions="Start" />
+                                    <Label Text="{Binding WeaponDamage, StringFormat='Урон оружия: {0:F2}'}" FontSize="12" TextColor="DimGray" HorizontalOptions="Start" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

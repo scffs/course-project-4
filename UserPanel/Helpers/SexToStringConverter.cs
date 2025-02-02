@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace UserPanel.Helpers
 {
@@ -11,12 +6,13 @@ namespace UserPanel.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool sex)
+            if (value is int sexInt)
             {
-                return sex ? "Мужской" : "Женский";
+                return sexInt == 1 ? "Мужской" : "Женский";
             }
             return "Не указано";
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

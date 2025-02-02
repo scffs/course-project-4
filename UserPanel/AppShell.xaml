@@ -5,6 +5,7 @@
   xmlns:auth="clr-namespace:UserPanel.Views.Auth"
   xmlns:views="clr-namespace:UserPanel.Views.Base"
   xmlns:profile="clr-namespace:UserPanel.Views.Profile"
+  xmlns:hero="clr-namespace:UserPanel.Views.Hero"
   FlyoutBehavior="Disabled"
   Title="UserPanel">
     <ShellContent Title="Auth" ContentTemplate="{DataTemplate auth:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>
@@ -12,5 +13,6 @@
     <TabBar>
         <ShellContent Title="Articles" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage"/>
         <ShellContent Title="Profile" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
+        <ShellContent Title="Heroes" ContentTemplate="{DataTemplate hero:HeroesPage}" Route="HeroesPage"/>
     </TabBar>
 </Shell>
