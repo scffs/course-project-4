@@ -10,51 +10,113 @@ public partial class ProfileViewModel : ObservableObject
 {
     private readonly AuthService _authService;
 
-    [ObservableProperty] private User? _currentUser;
-    [ObservableProperty] private bool _isBusy;
-    [ObservableProperty] private string? _errorMessage;
+    [ObservableProperty] private User? currentUser;
+    [ObservableProperty] private bool isAuthenticated;
+    [ObservableProperty] private bool inverseIsAuthenticated;
+    [ObservableProperty] private bool isBusy;
+    [ObservableProperty] private string? errorMessage;
 
     public ProfileViewModel(AuthService authService)
     {
-        _authService = authService;
+        _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+        CheckAuthenticationState();
         LoadUserProfile();
+    }
+
+    private void CheckAuthenticationState()
+    {
+        var token = Preferences.Get("auth_token", string.Empty);
+        IsAuthenticated = !string.IsNullOrEmpty(token);
+        InverseIsAuthenticated = !IsAuthenticated;
     }
 
     private void LoadUserProfile()
     {
-        var userJson = Preferences.Get("current_user", string.Empty);
-        if (!string.IsNullOrEmpty(userJson))
+        if (IsAuthenticated)
         {
-            _currentUser = JsonSerializer.Deserialize<User>(userJson);
+            var userJson = Preferences.Get("current_user", string.Empty);
+            if (!string.IsNullOrEmpty(userJson))
+            {
+                CurrentUser = JsonSerializer.Deserialize<User>(userJson);
+            }
         }
+    }
+
+    public void SetAuthenticated()
+    {
+        IsAuthenticated = true;
+        InverseIsAuthenticated = false;
+        OnPropertyChanged(nameof(IsAuthenticated));
+        OnPropertyChanged(nameof(InverseIsAuthenticated));
+    }
+
+    public void ClearAuthentication()
+    {
+        IsAuthenticated = false;
+        InverseIsAuthenticated = true;
+        OnPropertyChanged(nameof(IsAuthenticated));
+        OnPropertyChanged(nameof(InverseIsAuthenticated));
     }
 
     [RelayCommand]
     public async Task LogoutAsync()
     {
-        if (_isBusy) return;
+        if (IsBusy) return;
+        IsBusy = true;
 
-        _isBusy = true;
         try
         {
+            // Показываем диалоговое окно с подтверждением
+            bool confirmed = await Application.Current.MainPage.DisplayAlert(
+                "Подтверждение выхода",
+                "Вы уверены, что хотите выйти из аккаунта?",
+                "Да",
+                "Отмена"
+            );
+
+            if (!confirmed)
+            {
+                // Если пользователь отменил действие, выходим из метода
+                return;
+            }
+
+            // Очищаем токен и данные пользователя
             Preferences.Remove("auth_token");
             Preferences.Remove("current_user");
-            await Shell.Current.GoToAsync("//LoginPage");
+
+            // Очищаем состояние аутентификации
+            ClearAuthentication();
+
+            // Переходим на главную страницу
+            await Shell.Current.GoToAsync("//MainPage");
         }
         catch (Exception ex)
         {
-            _errorMessage = ex.Message;
+            ErrorMessage = ex.Message;
         }
         finally
         {
-            _isBusy = false;
+            IsBusy = false;
         }
     }
 
     [RelayCommand]
     public async Task EditProfileAsync()
     {
-        // Перейти на страницу редактирования профиля
+        if (!IsAuthenticated || IsBusy) return;
         await Shell.Current.GoToAsync("//EditProfilePage");
+    }
+
+    partial void OnIsAuthenticatedChanged(bool oldValue, bool newValue)
+    {
+        InverseIsAuthenticated = !newValue;
+        if (newValue)
+        {
+            LoadUserProfile();
+        }
+        else
+        {
+            CurrentUser = null;
+        }
     }
 }

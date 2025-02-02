@@ -1,7 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
 using System.Globalization;
-
 namespace UserPanel.Helpers
 {
     public class StringNotEmptyConverter : IValueConverter

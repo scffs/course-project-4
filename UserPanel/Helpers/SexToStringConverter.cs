@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-
 namespace UserPanel.Helpers
 {
     internal class SexToStringConverter : IValueConverter
@@ -12,7 +11,6 @@ namespace UserPanel.Helpers
             }
             return "Не указано";
         }
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

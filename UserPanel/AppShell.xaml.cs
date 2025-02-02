@@ -8,7 +8,7 @@ public partial class AppShell
 
         var token = Preferences.Get("auth_token", string.Empty);
 
-        GoToAsync(string.IsNullOrEmpty(token) ? "//LoginPage" : "//MainPage");
+        GoToAsync("//MainPage");
     }
 
 }
