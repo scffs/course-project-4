@@ -1,0 +1,47 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UserPanel.Views.Base.MainPage"
+             xmlns:models="clr-namespace:UserPanel.Models"
+             xmlns:viewModels="clr-namespace:UserPanel.ViewModels"
+             Title="Статьи"
+             x:DataType="viewModels:ArticlesViewModel">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
+                <!-- Сообщение об ошибке -->
+                <Label Text="{Binding ErrorMessage}" 
+                       TextColor="Red" 
+                       IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
+                       HorizontalOptions="Center" />
+                <!-- Список статей -->
+                <CollectionView ItemsSource="{Binding Articles}" VerticalOptions="Start">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Article">
+                            <Frame CornerRadius="10" Padding="15" WidthRequest="350" HorizontalOptions="Center">
+                                <VerticalStackLayout Spacing="10">
+                                    <!-- Заголовок статьи -->
+                                    <Label Text="{Binding Title}" FontSize="18" HorizontalOptions="Center" FontAttributes="Bold" />
+
+                                    <!-- Превью статьи -->
+                                    <Image Source="{Binding Preview}" Aspect="AspectFill" HeightRequest="200" HorizontalOptions="FillAndExpand">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Preview}" Value="{x:Null}">
+                                                <Setter Property="Source" Value="default_article.png"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <!-- категория статьи -->
+                                    <Label Text="{Binding ArticleCategoryId}" FontSize="14" MaxLines="3" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
+                                    <!-- Описание статьи -->
+                                    <Label Text="{Binding Description}" FontSize="14" MaxLines="3" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
+                                    <!-- Дата публикации -->
+                                    <Label Text="{Binding CreatedAt, StringFormat='Опубликовано: {0:dd.MM.yyyy}'}" FontSize="12" TextColor="DimGray" HorizontalOptions="Start" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

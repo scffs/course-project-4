@@ -4,7 +4,7 @@
              xmlns:viewModels="clr-namespace:UserPanel.ViewModels"
              x:Class="UserPanel.Views.Auth.LoginPage"
              Title="Авторизация"
-             x:DataType="viewModels:LoginViewModel">
+             >
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Spacing="10" Padding="50" VerticalOptions="Center" HorizontalOptions="Center">

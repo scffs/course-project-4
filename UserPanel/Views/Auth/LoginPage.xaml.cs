@@ -1,4 +1,4 @@
-using UserPanel.ViewModels;
+using UserPanel.ViewModels.Login;
 
 namespace UserPanel.Views.Auth;
 

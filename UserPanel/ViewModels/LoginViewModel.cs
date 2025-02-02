@@ -4,7 +4,7 @@ using UserPanel.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace UserPanel.ViewModels;
+namespace UserPanel.ViewModels.Login;
 
 public partial class LoginViewModel(AuthService authService) : ObservableObject
 {
@@ -23,6 +23,9 @@ public partial class LoginViewModel(AuthService authService) : ObservableObject
 
         try
         {
+            if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
+                throw new InvalidDataException("Invalid login or password");
+            
             var authResponse = await authService.LoginAsync(Login, Password);
 
             if (string.IsNullOrEmpty(authResponse.Token))
@@ -35,7 +38,9 @@ public partial class LoginViewModel(AuthService authService) : ObservableObject
             Preferences.Set("auth_token", authResponse.Token);
             Preferences.Set("current_user", JsonSerializer.Serialize(CurrentUser));
 
-            Application.Current.MainPage = new AppShell();
+            if (Application.Current != null)
+                Application.Current.MainPage = new AppShell();
+            
         }
         catch (Exception ex)
         {

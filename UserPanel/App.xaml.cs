@@ -1,6 +1,4 @@
-﻿using UserPanel.Views.Auth;
-
-namespace UserPanel;
+﻿namespace UserPanel;
 
 public partial class App
 {
