@@ -21,7 +21,9 @@ class Item extends Model
     'price',
     'item_category_id',
   ];
-
+  protected $casts = [
+    'price' => 'float'
+  ];
   public function itemCategory(): BelongsTo
   {
     return $this->belongsTo(ItemCategory::class);

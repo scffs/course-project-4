@@ -20,42 +20,93 @@ public partial class RegisterViewModel(RegisterService registerService) : Observ
     [ObservableProperty] private string? errorMessage;
     [ObservableProperty] private bool isBusy;
     [ObservableProperty] private bool isAvatarUploaded;
-    public ICommand UploadAvatarCommand => new AsyncRelayCommand(UploadAvatarAsync);
     [RelayCommand]
     private async Task RegisterAsync()
     {
         if (IsBusy) return;
         IsBusy = true;
         ErrorMessage = string.Empty;
+
         try
         {
-            var sex = IsMale; // true for male, false for female
-            var response = await registerService.RegisterAsync(Name, Surname, Patronymic, sex, Birthday, Login, Password, AvatarUrl ?? "");
+            // Валидация полей
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                ErrorMessage = "Введите имя.";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Surname))
+            {
+                ErrorMessage = "Введите фамилию.";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Login))
+            {
+                ErrorMessage = "Введите логин.";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                ErrorMessage = "Введите пароль.";
+                return;
+            }
+
+            if (!IsMale && !IsFemale)
+            {
+                ErrorMessage = "Выберите ваш пол.";
+                return;
+            }
+
+            if (Birthday > DateTime.Today)
+            {
+                ErrorMessage = "Дата рождения не может быть в будущем.";
+                return;
+            }
+
+            var sex = IsMale; // true для мужского пола, false для женского
+
+            var response = await registerService.RegisterAsync(
+                Name,
+                Surname,
+                Patronymic,
+                sex,
+                Birthday,
+                Login,
+                Password,
+                AvatarUrl ?? ""
+            );
 
             if (string.IsNullOrEmpty(response.Token))
             {
                 ErrorMessage = "Ошибка регистрации. Проверьте данные.";
                 return;
             }
-            // Сохранение токена и пользователя
+
+            // Сохраняем токен и пользователя
             Preferences.Set("auth_token", response.Token);
             Preferences.Set("current_user", JsonSerializer.Serialize(response.User));
-            // Переход в главное меню
+
+            // Переходим в главное меню
             Application.Current.MainPage = new AppShell();
         }
         catch (Exception ex)
         {
-            ErrorMessage = ex.Message;
+            // Обработка ошибок от сервера
+            if (ex is HttpRequestException httpEx && httpEx.StatusCode == System.Net.HttpStatusCode.UnprocessableEntity)
+            {
+                ErrorMessage = "Ошибка валидации данных. Проверьте правильность введенных данных.";
+            }
+            else
+            {
+                ErrorMessage = ex.Message;
+            }
         }
         finally
         {
             IsBusy = false;
         }
-    }
-    private async Task UploadAvatarAsync()
-    {
-        // Заглушка для загрузки аватара
-        AvatarUrl = "https://example.com/avatar.png";
-        IsAvatarUploaded = true;
     }
 }

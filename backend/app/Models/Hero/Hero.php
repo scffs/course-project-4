@@ -25,9 +25,9 @@ class Hero extends Model
     'weapon_damage',
   ];
   protected $casts = [
-    'damage_per_sec' => 'float', // или 'decimal:2'
-    'move_speed' => 'float',     // или 'decimal:2'
-    'weapon_damage' => 'float',  // или 'decimal:2'
+    'damage_per_sec' => 'float',
+    'move_speed' => 'float',
+    'weapon_damage' => 'float',
   ];
 
   public function abilities(): HasMany
