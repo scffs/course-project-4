@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using UserPanel.Models;
 using UserPanel.Services;
 
@@ -13,18 +14,17 @@ public class ArticleService(HttpClient httpClient) : BaseService(httpClient)
         {
             throw new Exception($"Ошибка запроса: {response.StatusCode}");
         }
-
         var responseBody = await response.Content.ReadAsStringAsync();
-        var result = JsonSerializer.Deserialize<List<Article>>(responseBody, new JsonSerializerOptions
+        var options = new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true
-        });
-
+            PropertyNameCaseInsensitive = true,
+            Converters = { new JsonStringEnumConverter() } // Добавьте необходимые конвертеры
+        };
+        var result = JsonSerializer.Deserialize<List<Article>>(responseBody, options);
         if (result == null)
         {
             throw new Exception("Ошибка обработки ответа сервера.");
         }
-
         return result;
     }
 }

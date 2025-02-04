@@ -21,7 +21,6 @@ public partial class ArticlesViewModel : ObservableObject
     {
         if (_isBusy) return;
         _isBusy = true;
-
         try
         {
             var articles = await _articleService.GetArticlesAsync();

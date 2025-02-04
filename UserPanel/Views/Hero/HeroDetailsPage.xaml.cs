@@ -7,9 +7,4 @@ public partial class HeroDetailsPage : ContentPage
         InitializeComponent();
         BindingContext = hero;
     }
-    // Обработчик клика на кнопку "Назад"
-    private async void OnBackButtonClicked(object sender, EventArgs e)
-    {
-        await Navigation.PopAsync(); // Возвращаемся на предыдущую страницу
-    }
 }
