@@ -65,6 +65,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\Hero\HeroesPage.xaml.cs">
+	    <DependentUpon>HeroesPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Hero\HeroDetailsPage.xaml.cs">
+	    <DependentUpon>HeroDetailsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\Hero\HeroDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Hero\HeroesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

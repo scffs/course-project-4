@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:UserPanel.Models"
+             xmlns:helpers="clr-namespace:UserPanel.Helpers"
+             x:Class="UserPanel.Views.Hero.HeroDetailsPage"
+             x:DataType="models:Hero"
+             Title="{Binding Name}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:SexToStringConverter x:Key="SexToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- Кнопка "Назад" -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Назад" Clicked="OnBackButtonClicked" Order="Primary" Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
+                <!-- Имя героя -->
+                <Label Text="{Binding Name}" FontSize="24" HorizontalOptions="Center" FontAttributes="Bold" />
+                <!-- Пол героя (с конвертером) -->
+                <Label Text="{Binding Sex, Converter={StaticResource SexToStringConverter}}" FontSize="16" TextColor="Gray" HorizontalOptions="Start" />
+                <!-- Фото героя -->
+                <Image Source="{Binding PhotoUrl}" Aspect="AspectFill" HeightRequest="300" HorizontalOptions="FillAndExpand">
+                    <Image.Triggers>
+                        <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
+                            <Setter Property="Source" Value="default_hero.png"/>
+                        </DataTrigger>
+                    </Image.Triggers>
+                </Image>
+                <!-- Описание героя -->
+                <Label Text="Описание:" FontSize="16" TextColor="DimGray" HorizontalOptions="Start" />
+                <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" MaxLines="5" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
+                <!-- Характеристики -->
+                <Label Text="Характеристики:" FontSize="16" TextColor="DimGray" HorizontalOptions="Start" />
+                <Label Text="{Binding Health, StringFormat='Здоровье: {0}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+                <Label Text="{Binding DamagePerSec, StringFormat='Урон в секунду: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+                <Label Text="{Binding BulletsAmount, StringFormat='Количество пуль: {0}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+                <Label Text="{Binding MoveSpeed, StringFormat='Скорость передвижения: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+                <Label Text="{Binding WeaponDamage, StringFormat='Урон оружия: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

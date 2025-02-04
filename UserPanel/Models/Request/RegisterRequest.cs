@@ -14,10 +14,10 @@ namespace UserPanel.Models.Request
         public string UserPatronymic { get; set; } = UserPatronymic ?? throw new ArgumentNullException(nameof(UserPatronymic));
 
         [JsonPropertyName("sex")]
-        public bool Sex { get; set; } = Sex /*?? throw new ArgumentNullException(nameof(sex))*/;
+        public bool Sex { get; set; } = Sex;
 
         [JsonPropertyName("birthday")]
-        public DateTime Birthday { get; set; } = Birthday/* ?? throw new ArgumentNullException(nameof(Birthday))*/;
+        public DateTime Birthday { get; set; } = Birthday;
 
         [JsonPropertyName("login")]
         public string Login { get; set; } = Login ?? throw new ArgumentNullException(nameof(Login));

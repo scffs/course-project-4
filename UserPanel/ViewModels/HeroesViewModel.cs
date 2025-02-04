@@ -8,9 +8,10 @@ public partial class HeroesViewModel : ObservableObject
 {
     private readonly HeroService _heroService;
 
-    [ObservableProperty] private ObservableCollection<Hero> _heroes;
-    [ObservableProperty] private bool _isBusy;
-    [ObservableProperty] private string? _errorMessage;
+    [ObservableProperty] private ObservableCollection<Hero> heroes;
+    [ObservableProperty] private bool isBusy;
+    [ObservableProperty] private string? errorMessage;
+    [ObservableProperty] private Hero? selectedHero;
 
     public HeroesViewModel(HeroService heroService)
     {
@@ -20,28 +21,20 @@ public partial class HeroesViewModel : ObservableObject
 
     private async void LoadHeroes()
     {
-        if (_isBusy) return;
-        _isBusy = true;
-
+        if (IsBusy) return;
+        IsBusy = true;
         try
         {
             var heroes = await _heroService.GetHeroesAsync();
-            if (heroes == null || !heroes.Any())
-            {
-                ErrorMessage = "Нет данных о героях.";
-                return;
-            }
             Heroes = new ObservableCollection<Hero>(heroes);
-            Console.WriteLine($"Загружено {heroes.Count} героев.");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ошибка загрузки героев: {ex.Message}");
             ErrorMessage = $"Ошибка: {ex.Message}";
         }
         finally
         {
-            _isBusy = false;
+            IsBusy = false;
         }
     }
 }

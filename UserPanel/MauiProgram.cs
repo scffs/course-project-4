@@ -41,6 +41,7 @@ namespace UserPanel
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<HeroesViewModel>();
             builder.Services.AddTransient<HeroesPage>();
+            builder.Services.AddTransient<HeroDetailsPage>();
             builder.Services.AddTransient<ItemsViewModel>();
             builder.Services.AddTransient<ItemsPage>();
 
