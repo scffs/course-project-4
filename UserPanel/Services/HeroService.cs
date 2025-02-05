@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using UserPanel.Models;
-using UserPanel.Services;
 
 namespace UserPanel.Services;
 public class HeroService(HttpClient httpClient) : BaseService(httpClient)
@@ -12,18 +12,17 @@ public class HeroService(HttpClient httpClient) : BaseService(httpClient)
         {
             throw new Exception($"Ошибка запроса: {response.StatusCode}");
         }
-
         var responseBody = await response.Content.ReadAsStringAsync();
-        var result = JsonSerializer.Deserialize<List<Hero>>(responseBody, new JsonSerializerOptions
+        var options = new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true
-        });
-
+            PropertyNameCaseInsensitive = true,
+            Converters = { new JsonStringEnumConverter() } // Добавьте необходимые конвертеры
+        };
+        var result = JsonSerializer.Deserialize<List<Hero>>(responseBody, options);
         if (result == null)
         {
             throw new Exception("Ошибка обработки ответа сервера.");
         }
-
         return result;
     }
 }

@@ -5,33 +5,56 @@
              xmlns:helpers="clr-namespace:UserPanel.Helpers"
              x:Class="UserPanel.Views.Hero.HeroDetailsPage"
              x:DataType="models:Hero"
-             Title="HeroDetailsPage">
-    <ContentPage.Content>
-        <ScrollView>
-            <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
-                <!-- Имя героя -->
-                <Label Text="{Binding Name}" FontSize="24" HorizontalOptions="Center" FontAttributes="Bold" />
-                <!-- Пол героя -->
-                <Label Text="{Binding Sex, Converter={StaticResource SexToStringConverter}}" FontSize="16" TextColor="Gray" HorizontalOptions="Start" />
-                <!-- Фото героя -->
-                <Image Source="{Binding PhotoUrl}" Aspect="AspectFill" HeightRequest="300" HorizontalOptions="FillAndExpand">
-                    <Image.Triggers>
-                        <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
-                            <Setter Property="Source" Value="default_hero.png"/>
-                        </DataTrigger>
-                    </Image.Triggers>
-                </Image>
-                <!-- Описание героя -->
-                <Label Text="Описание:" FontSize="16" TextColor="DimGray" HorizontalOptions="Start" />
-                <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" MaxLines="5" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
-                <!-- Характеристики -->
-                <Label Text="Характеристики:" FontSize="16" TextColor="DimGray" HorizontalOptions="Start" />
-                <Label Text="{Binding Health, StringFormat='Здоровье: {0}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-                <Label Text="{Binding DamagePerSec, StringFormat='Урон в секунду: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-                <Label Text="{Binding BulletsAmount, StringFormat='Количество пуль: {0}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-                <Label Text="{Binding MoveSpeed, StringFormat='Скорость передвижения: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-                <Label Text="{Binding WeaponDamage, StringFormat='Урон оружия: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-            </VerticalStackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+             Title="{Binding Name}">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
+            <!-- Имя героя -->
+            <Label Text="{Binding Name}" FontSize="24" HorizontalOptions="Center" FontAttributes="Bold" />
+            <!-- Пол героя (с конвертером) -->
+            <Label Text="{Binding Sex, Converter={StaticResource SexToStringConverter}}" FontSize="16" TextColor="Gray" HorizontalOptions="Start" />
+            <!-- Фото героя -->
+            <Image Source="{Binding PhotoUrl}" Aspect="AspectFill" HeightRequest="300" HorizontalOptions="FillAndExpand">
+                <Image.Triggers>
+                    <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
+                        <Setter Property="Source" Value="default_hero.png"/>
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <!-- Описание героя -->
+            <Label Text="Описание:" FontSize="16" TextColor="DimGray" HorizontalOptions="Start" />
+            <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" MaxLines="5" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
+            <!-- Характеристики -->
+            <Label Text="Характеристики:" FontSize="16" TextColor="DimGray" HorizontalOptions="Start" />
+            <Label Text="{Binding Health, StringFormat='Здоровье: {0}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+            <Label Text="{Binding DamagePerSec, StringFormat='Урон в секунду: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+            <Label Text="{Binding BulletsAmount, StringFormat='Количество пуль: {0}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+            <Label Text="{Binding MoveSpeed, StringFormat='Скорость передвижения: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+            <Label Text="{Binding WeaponDamage, StringFormat='Урон оружия: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+
+            <!-- Раздел способностей -->
+            <Label Text="Способности:" FontSize="18" TextColor="DimGray" HorizontalOptions="Start" />
+            <CollectionView ItemsSource="{Binding Abilities}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Ability">
+                        <Frame CornerRadius="10" Padding="15" Margin="0, 10, 0, 0" BackgroundColor="Gray">
+                            <VerticalStackLayout>
+                                <!-- Название способности -->
+                                <Label Text="{Binding Name}" FontSize="16" TextColor="Aqua" HorizontalOptions="Start" />
+                                <!-- Описание способности -->
+                                <Label Text="{Binding Description}" FontSize="14" TextColor="White" MaxLines="3" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
+                                <!-- Изображение способности -->
+                                <Image Source="{Binding PhotoUrl}" Aspect="AspectFill" HeightRequest="100" HorizontalOptions="FillAndExpand">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
+                                            <Setter Property="Source" Value="default_ability.png"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
