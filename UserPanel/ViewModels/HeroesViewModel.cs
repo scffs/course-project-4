@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using UserPanel.Models;
 using UserPanel.Services;
+using UserPanel.Views.Hero;
 
 namespace UserPanel.ViewModels;
 public partial class HeroesViewModel : ObservableObject
@@ -35,6 +37,14 @@ public partial class HeroesViewModel : ObservableObject
         finally
         {
             IsBusy = false;
+        }
+    }
+    [RelayCommand]
+    private async void NavigateToHeroDetails(Hero hero)
+    {
+        if (hero != null)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new HeroDetailsPage(hero));
         }
     }
 }

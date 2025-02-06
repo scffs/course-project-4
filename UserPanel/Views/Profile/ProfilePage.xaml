@@ -16,99 +16,108 @@
     <ScrollView>
         <Grid RowDefinitions="*, Auto, Auto">
             <!-- Контент для авторизованного пользователя -->
-            <ContentView Grid.Row="0" IsVisible="{Binding IsAuthenticated}">
-                <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
-                    <!-- Аватар -->
-                    <Image Source="{Binding CurrentUser.AvatarUrl}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="Center">
-                        <Image.Triggers>
-                            <DataTrigger TargetType="Image" Binding="{Binding CurrentUser.AvatarUrl}" Value="{x:Null}">
-                                <Setter Property="Source" Value="default_avatar.png" />
-                            </DataTrigger>
-                        </Image.Triggers>
-                    </Image>
+            <ContentView Grid.Row="0" IsVisible="{Binding IsAuthenticated}" Padding="20">
+                    <VerticalStackLayout Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">
+                        <!-- Аватар -->
+                        <Frame CornerRadius="50" WidthRequest="100" HeightRequest="100" BackgroundColor="LightGray" HasShadow="True">
+                            <Image Source="{Binding CurrentUser.AvatarUrl}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" HorizontalOptions="Center">
+                                <Image.Triggers>
+                                    <DataTrigger TargetType="Image" Binding="{Binding CurrentUser.AvatarUrl}" Value="{x:Null}">
+                                        <Setter Property="Source" Value="default_avatar.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                        </Frame>
 
-                    <!-- ФИО -->
-                    <Label FontSize="24" HorizontalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding CurrentUser.Surname}" />
-                                <Span Text=" " />
-                                <Span Text="{Binding CurrentUser.Name}" />
-                                <Span Text=" " />
-                                <Span Text="{Binding CurrentUser.Patronymic}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                        <!-- ФИО -->
+                        <Label FontSize="Title" HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding CurrentUser.Surname}" />
+                                    <Span Text=" " />
+                                    <Span Text="{Binding CurrentUser.Name}" />
+                                    <Span Text=" " />
+                                    <Span Text="{Binding CurrentUser.Patronymic}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
 
-                    <!-- Дата рождения -->
-                    <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
-                        <Label Text="Дата рождения:" FontSize="24" VerticalOptions="Center" />
-                        <Label Text="{Binding CurrentUser.Birthday, StringFormat='{0:dd.MM.yyyy}'}" FontSize="24" VerticalOptions="Center" />
-                    </HorizontalStackLayout>
+                        <!-- Информация о пользователе -->
+                        <BoxView HeightRequest="1" HorizontalOptions="Fill" />
 
-                    <!-- Пол -->
-                    <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
-                        <Label Text="Пол:" FontSize="24" VerticalOptions="Center" />
-                        <Label Text="{Binding CurrentUser.Sex, Converter={StaticResource SexToStringConverter}}" FontSize="24" VerticalOptions="Center" />
-                    </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                            <Label Text="Дата рождения:" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="{Binding CurrentUser.Birthday, StringFormat='{0:dd.MM.yyyy}'}" FontSize="18" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
 
-                    <!-- Статус -->
-                    <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
-                        <Label Text="Статус:" FontSize="24" VerticalOptions="Center" />
-                        <Label Text="{Binding CurrentUser.Status}" FontSize="24" VerticalOptions="Center" />
-                    </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                            <Label Text="Пол:" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="{Binding CurrentUser.Sex, Converter={StaticResource SexToStringConverter}}" FontSize="18" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
 
-                    <!-- Логин -->
-                    <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
-                        <Label Text="Логин:" FontSize="24" VerticalOptions="Center" />
-                        <Label Text="{Binding CurrentUser.Login}" FontSize="24" VerticalOptions="Center" />
-                    </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                            <Label Text="Статус:" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="{Binding CurrentUser.Status}" FontSize="18" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
 
-                    <!-- Кнопки -->
-                    <Button Text="Редактировать профиль"
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                            <Label Text="Логин:" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="{Binding CurrentUser.Login}" FontSize="18" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+
+                        <!-- Кнопки -->
+                        <Button Text="Редактировать профиль"
                             Command="{Binding EditProfileCommand}"
                             BackgroundColor="#2196F3"
                             TextColor="White"
                             CornerRadius="20"
                             WidthRequest="200"
-                            HorizontalOptions="Center" />
+                            HorizontalOptions="Center"
+                            BorderWidth="1"
+                            BorderColor="#1E88E5" />
 
-                    <Button Text="Выйти из аккаунта"
+                        <Button Text="Выйти из аккаунта"
                             Command="{Binding LogoutCommand}"
                             BackgroundColor="#FF5722"
                             TextColor="White"
                             CornerRadius="20"
                             WidthRequest="200"
-                            HorizontalOptions="Center" />
+                            HorizontalOptions="Center"
+                            BorderWidth="1"
+                            BorderColor="#D32F2F" />
 
-                    <!-- Сообщение об ошибке -->
-                    <Label Text="{Binding ErrorMessage}" 
+                        <!-- Сообщение об ошибке -->
+                        <Label Text="{Binding ErrorMessage}" 
                            TextColor="Red" 
                            IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
                            HorizontalOptions="Center" />
-                </VerticalStackLayout>
+                    </VerticalStackLayout>
             </ContentView>
 
             <!-- Контент для неавторизованного пользователя -->
-            <ContentView Grid.Row="0" IsVisible="{Binding InverseIsAuthenticated}">
-                <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
-                    <Label HorizontalOptions="Center" Text="Профиль пуст :("/>
-                    <Button Text="Войти"
+            <ContentView Grid.Row="0" IsVisible="{Binding InverseIsAuthenticated}" Padding="20">
+                    <VerticalStackLayout Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Профиль пуст :(" FontSize="Subtitle" HorizontalOptions="Center" />
+                        <Button Text="Войти"
                             Clicked="OnLoginClicked"
                             BackgroundColor="#2196F3"
                             TextColor="White"
                             CornerRadius="20"
                             WidthRequest="200"
-                            HorizontalOptions="Center" />
+                            HorizontalOptions="Center"
+                            BorderWidth="1"
+                            BorderColor="#1E88E5" />
 
-                    <Button Text="Зарегистрироваться"
+                        <Button Text="Зарегистрироваться"
                             Clicked="OnRegisterClicked"
                             BackgroundColor="#4CAF50"
                             TextColor="White"
                             CornerRadius="20"
                             WidthRequest="200"
-                            HorizontalOptions="Center" />
-                </VerticalStackLayout>
+                            HorizontalOptions="Center"
+                            BorderWidth="1"
+                            BorderColor="#388E3C" />
+                    </VerticalStackLayout>
             </ContentView>
         </Grid>
     </ScrollView>
