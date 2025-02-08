@@ -12,7 +12,6 @@ namespace UserPanel
     public static class MauiProgram
     {
         public static IServiceProvider? ServiceProvider { get; private set; }
-
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
@@ -22,14 +21,13 @@ namespace UserPanel
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
             builder.Logging.AddDebug();
-
             // Регистрация API-клиентов
-            builder.Services.AddApiHttpClient<RegisterService>("http://127.0.0.1:8000/encyclopedia/");
-            builder.Services.AddApiHttpClient<AuthService>("http://127.0.0.1:8000/encyclopedia/");
-            builder.Services.AddApiHttpClient<ArticleService>("http://127.0.0.1:8000/encyclopedia/");
-            builder.Services.AddApiHttpClient<HeroService>("http://127.0.0.1:8000/encyclopedia/");
-            builder.Services.AddApiHttpClient<ItemService>("http://127.0.0.1:8000/encyclopedia/");
-
+            var baseAddress = "http://127.0.0.1:8000/encyclopedia/";
+            builder.Services.AddApiHttpClient<RegisterService>(baseAddress);
+            builder.Services.AddApiHttpClient<AuthService>(baseAddress);
+            builder.Services.AddApiHttpClient<ArticleService>(baseAddress);
+            builder.Services.AddApiHttpClient<HeroService>(baseAddress);
+            builder.Services.AddApiHttpClient<ItemService>(baseAddress);
             // Регистрация страниц и ViewModel
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<RegisterPage>();
@@ -45,7 +43,6 @@ namespace UserPanel
             builder.Services.AddTransient<HeroDetailsPage>();
             builder.Services.AddTransient<ItemsViewModel>();
             builder.Services.AddTransient<ItemsPage>();
-
             var app = builder.Build();
             ServiceProvider = app.Services;
             return app;

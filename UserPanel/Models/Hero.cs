@@ -1,6 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using System.Collections.Generic;
-
 namespace UserPanel.Models;
 public class Hero
 {
@@ -14,7 +12,5 @@ public class Hero
     [JsonPropertyName("bullets_amount")] public required int BulletsAmount { get; set; }
     [JsonPropertyName("move_speed")] public required decimal MoveSpeed { get; set; }
     [JsonPropertyName("weapon_damage")] public required decimal WeaponDamage { get; set; }
-    [JsonPropertyName("created_at")] public required DateTime CreatedAt { get; set; }
-    [JsonPropertyName("updated_at")] public required DateTime UpdatedAt { get; set; }
     [JsonPropertyName("abilities")] public List<Ability>? Abilities { get; set; }
 }

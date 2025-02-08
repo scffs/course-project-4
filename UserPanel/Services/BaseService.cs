@@ -1,12 +1,9 @@
-using System.Net.Http;
 using System.Text.Json;
 using System.Text;
-
 namespace UserPanel.Services;
 public class BaseService
 {
     protected readonly HttpClient _httpClient;
-
     public BaseService(HttpClient httpClient)
     {
         _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
@@ -15,7 +12,6 @@ public class BaseService
             throw new InvalidOperationException("BaseAddress is not set on HttpClient.");
         }
     }
-
     protected async Task<T> PostAsync<T>(string endpoint, object payload)
     {
         var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");

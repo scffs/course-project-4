@@ -1,9 +1,6 @@
-﻿using System.Net.Http;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using UserPanel.Models;
-using UserPanel.Services;
-
 namespace UserPanel.Services;
 public class ArticleService(HttpClient httpClient) : BaseService(httpClient)
 {
@@ -18,7 +15,7 @@ public class ArticleService(HttpClient httpClient) : BaseService(httpClient)
         var options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
-            Converters = { new JsonStringEnumConverter() } // Добавьте необходимые конвертеры
+            Converters = {new JsonStringEnumConverter()}
         };
         var result = JsonSerializer.Deserialize<List<Article>>(responseBody, options);
         if (result == null)

@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-
 namespace UserPanel.Models;
 public class Comment
 {

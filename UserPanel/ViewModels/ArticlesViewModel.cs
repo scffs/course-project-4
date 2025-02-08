@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using UserPanel.Models;
 using UserPanel.Services;
-
 namespace UserPanel.ViewModels;
 public partial class ArticlesViewModel : ObservableObject
 {
@@ -10,13 +9,11 @@ public partial class ArticlesViewModel : ObservableObject
     [ObservableProperty] private ObservableCollection<Article> _articles;
     [ObservableProperty] private bool _isBusy;
     [ObservableProperty] private string? _errorMessage;
-
     public ArticlesViewModel(ArticleService articleService)
     {
         _articleService = articleService;
         LoadArticles();
     }
-
     private async void LoadArticles()
     {
         if (_isBusy) return;

@@ -3,33 +3,27 @@ using CommunityToolkit.Mvvm.Input;
 using System.Text.Json;
 using UserPanel.Models;
 using UserPanel.Services;
-
 namespace UserPanel.ViewModels;
-
 public partial class ProfileViewModel : ObservableObject
 {
     private readonly AuthService _authService;
-
     [ObservableProperty] private User? currentUser;
     [ObservableProperty] private bool isAuthenticated;
     [ObservableProperty] private bool inverseIsAuthenticated;
     [ObservableProperty] private bool isBusy;
     [ObservableProperty] private string? errorMessage;
-
     public ProfileViewModel(AuthService authService)
     {
         _authService = authService ?? throw new ArgumentNullException(nameof(authService));
         CheckAuthenticationState();
         LoadUserProfile();
     }
-
     private void CheckAuthenticationState()
     {
         var token = Preferences.Get("auth_token", string.Empty);
         IsAuthenticated = !string.IsNullOrEmpty(token);
         InverseIsAuthenticated = !IsAuthenticated;
     }
-
     private void LoadUserProfile()
     {
         if (IsAuthenticated)
@@ -41,7 +35,6 @@ public partial class ProfileViewModel : ObservableObject
             }
         }
     }
-
     public void SetAuthenticated()
     {
         IsAuthenticated = true;
@@ -49,7 +42,6 @@ public partial class ProfileViewModel : ObservableObject
         OnPropertyChanged(nameof(IsAuthenticated));
         OnPropertyChanged(nameof(InverseIsAuthenticated));
     }
-
     public void ClearAuthentication()
     {
         IsAuthenticated = false;
@@ -57,37 +49,26 @@ public partial class ProfileViewModel : ObservableObject
         OnPropertyChanged(nameof(IsAuthenticated));
         OnPropertyChanged(nameof(InverseIsAuthenticated));
     }
-
     [RelayCommand]
     public async Task LogoutAsync()
     {
         if (IsBusy) return;
         IsBusy = true;
-
         try
         {
-            // Показываем диалоговое окно с подтверждением
             bool confirmed = await Application.Current.MainPage.DisplayAlert(
                 "Подтверждение выхода",
                 "Вы уверены, что хотите выйти из аккаунта?",
                 "Да",
                 "Отмена"
             );
-
             if (!confirmed)
             {
-                // Если пользователь отменил действие, выходим из метода
                 return;
             }
-
-            // Очищаем токен и данные пользователя
             Preferences.Remove("auth_token");
             Preferences.Remove("current_user");
-
-            // Очищаем состояние аутентификации
             ClearAuthentication();
-
-            // Переходим на главную страницу
             await Shell.Current.GoToAsync("//MainPage");
         }
         catch (Exception ex)
@@ -99,14 +80,12 @@ public partial class ProfileViewModel : ObservableObject
             IsBusy = false;
         }
     }
-
     [RelayCommand]
     public async Task EditProfileAsync()
     {
         if (!IsAuthenticated || IsBusy) return;
         await Shell.Current.GoToAsync("//EditProfilePage");
     }
-
     partial void OnIsAuthenticatedChanged(bool oldValue, bool newValue)
     {
         InverseIsAuthenticated = !newValue;

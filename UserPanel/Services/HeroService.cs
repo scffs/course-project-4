@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using UserPanel.Models;
-
 namespace UserPanel.Services;
 public class HeroService(HttpClient httpClient) : BaseService(httpClient)
 {
@@ -16,7 +15,7 @@ public class HeroService(HttpClient httpClient) : BaseService(httpClient)
         var options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
-            Converters = { new JsonStringEnumConverter() } // Добавьте необходимые конвертеры
+            Converters = { new JsonStringEnumConverter() }
         };
         var result = JsonSerializer.Deserialize<List<Hero>>(responseBody, options);
         if (result == null)

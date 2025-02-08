@@ -1,6 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using System.Collections.Generic;
-
 namespace UserPanel.Models;
 public class Article
 {
@@ -13,10 +11,6 @@ public class Article
     [JsonPropertyName("article_category_id")] public required ulong ArticleCategoryId { get; set; }
     [JsonPropertyName("created_at")] public required DateTime CreatedAt { get; set; }
     [JsonPropertyName("updated_at")] public required DateTime UpdatedAt { get; set; }
-
-    // Добавляем свойство Author для автора статьи
     [JsonPropertyName("author")] public User? Author { get; set; }
-
-    // Список комментариев
     [JsonPropertyName("comments")] public List<Comment>? Comments { get; set; }
 }

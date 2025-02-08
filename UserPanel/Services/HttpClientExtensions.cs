@@ -1,6 +1,4 @@
-
 namespace UserPanel.Services;
-
 public static class HttpClientExtensions
 {
   public static void AddApiHttpClient<TClient>(this IServiceCollection services, string baseAddress)

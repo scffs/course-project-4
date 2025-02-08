@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-
 namespace UserPanel.Models;
 public class Item
 {
@@ -10,6 +9,4 @@ public class Item
     [JsonPropertyName("description")] public string? Description { get; set; }
     [JsonPropertyName("price")] public required decimal Price { get; set; }
     [JsonPropertyName("item_category_id")] public required ulong ItemCategoryId { get; set; }
-    [JsonPropertyName("created_at")] public required DateTime CreatedAt { get; set; }
-    [JsonPropertyName("updated_at")] public required DateTime UpdatedAt { get; set; }
 }
