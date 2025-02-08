@@ -8,32 +8,47 @@
              x:DataType="viewModels:ItemsViewModel">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="10" Padding="10">
-            <!-- Сообщение об ошибке -->
+        <VerticalStackLayout Padding="10">
             <Label Text="{Binding ErrorMessage}" 
                    TextColor="Red" 
                    IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
                    HorizontalOptions="Center" />
-
-            <!-- Список предметов -->
-            <CollectionView ItemsSource="{Binding Items}">
-                <CollectionView.ItemTemplate>
+            <FlexLayout 
+                    BindableLayout.ItemsSource="{Binding Items}" 
+                    AlignItems="Start" 
+                    JustifyContent="Center" 
+                    Wrap="Wrap">
+                <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="models:Item">
-                        <Frame Margin="5" Padding="10" CornerRadius="10" HasShadow="True">
-                            <Grid ColumnDefinitions="*, 2*" RowDefinitions="Auto, Auto">
-                                <!-- Изображение предпросмотра -->
-                                <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding PreviewUrl}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100" />
-
-                                <!-- Название -->
-                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Title}" FontSize="18" FontAttributes="Bold" />
-
-                                <!-- Цена -->
-                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="16" />
-                            </Grid>
+                        <Frame Margin="3" CornerRadius="10" WidthRequest="220" HeightRequest="250" HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ItemsViewModel}}, Path=NavigateToItemDetailsCommand}" 
+                                                      CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <VerticalStackLayout Spacing="5" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label 
+                                Text="{Binding Title}" 
+                                FontSize="16" 
+                                HorizontalTextAlignment="Center" 
+                                MaxLines="2" 
+                                LineBreakMode="TailTruncation" />
+                                <Label 
+                                Text="{Binding ItemCategoryId}" 
+                                FontSize="16" 
+                                HorizontalTextAlignment="Center" 
+                                MaxLines="2" 
+                                LineBreakMode="TailTruncation" />
+                                <Image 
+                                Source="{Binding PreviewUrl}" 
+                                Aspect="AspectFill" 
+                                HeightRequest="200" 
+                                WidthRequest="200" 
+                                HorizontalOptions="Center" />
+                            </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

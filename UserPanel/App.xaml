@@ -9,6 +9,7 @@
             <helpers:InverseBoolConverter x:Key="InverseBoolConverter" />
             <helpers:StringNotEmptyConverter x:Key="StringNotEmptyConverter" />
             <helpers:SexToStringConverter x:Key="SexToStringConverter" />
+            <helpers:BooleanStringConverter x:Key="BooleanStringConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

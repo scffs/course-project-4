@@ -2,6 +2,7 @@
 using System.Buffers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+namespace UserPanel.Helpers;
 
 public class BooleanStringConverter : JsonConverter<bool>
 {

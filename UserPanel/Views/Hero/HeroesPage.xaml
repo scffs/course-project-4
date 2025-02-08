@@ -8,7 +8,6 @@
 
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <!-- FlexLayout to arrange heroes in two columns -->
             <FlexLayout 
                 BindableLayout.ItemsSource="{Binding Heroes}" 
                 AlignItems="Center" 
@@ -16,8 +15,6 @@
                 Wrap="Wrap" 
                 HorizontalOptions="Center" 
                 VerticalOptions="Start">
-
-                <!-- DataTemplate for each hero -->
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="models:Hero">
                         <Frame 
@@ -29,8 +26,6 @@
                             Margin="5" 
                             HorizontalOptions="Center" 
                             VerticalOptions="Center">
-
-                            <!-- TapGestureRecognizer for navigation -->
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HeroesViewModel}}, Path=NavigateToHeroDetailsCommand}" 
                                                       CommandParameter="{Binding .}" />
