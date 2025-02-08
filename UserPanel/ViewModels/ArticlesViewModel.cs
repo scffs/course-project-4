@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using UserPanel.Models;
 using UserPanel.Services;
+using UserPanel.Views.Base;
 namespace UserPanel.ViewModels;
 public partial class ArticlesViewModel : ObservableObject
 {
@@ -30,6 +32,14 @@ public partial class ArticlesViewModel : ObservableObject
         finally
         {
             _isBusy = false;
+        }
+    }
+    [RelayCommand]
+    private async Task NavigateToArticleDetails(Article article)
+    {
+        if (article != null)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new ArticleDetailsPage(article));
         }
     }
 }

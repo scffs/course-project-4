@@ -3,7 +3,9 @@ using UserPanel.Models;
 using UserPanel.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+
 namespace UserPanel.ViewModels.Login;
+
 public partial class LoginViewModel(AuthService authService) : ObservableObject
 {
     [ObservableProperty] private User? _currentUser;
@@ -19,14 +21,17 @@ public partial class LoginViewModel(AuthService authService) : ObservableObject
         ErrorMessage = string.Empty;
         try
         {
-            if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
-                throw new InvalidDataException("Invalid login or password");
-            var authResponse = await authService.LoginAsync(Login, Password);
-            if (string.IsNullOrEmpty(authResponse.Token))
+            if (string.IsNullOrWhiteSpace(Login))
             {
-                ErrorMessage = "Неверные данные для входа.";
+                ErrorMessage = "Поле 'Логин' не заполнено";
                 return;
             }
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                ErrorMessage = "Поле 'Пароль' не заполнено";
+                return;
+            }
+            var authResponse = await authService.LoginAsync(Login, Password);
             CurrentUser = authResponse.User;
             Preferences.Set("auth_token", authResponse.Token);
             Preferences.Set("current_user", JsonSerializer.Serialize(CurrentUser));
@@ -36,7 +41,7 @@ public partial class LoginViewModel(AuthService authService) : ObservableObject
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-            ErrorMessage = ex.Message;
+            ErrorMessage = "Ошибка: " + ex.Message;
         }
         finally
         {

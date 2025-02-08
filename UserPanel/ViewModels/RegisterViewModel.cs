@@ -57,14 +57,7 @@ public partial class RegisterViewModel(RegisterService registerService) : Observ
             }
             var sex = IsMale;
             var response = await registerService.RegisterAsync(
-                Name,
-                Surname,
-                Patronymic,
-                sex,
-                Birthday,
-                Login,
-                Password,
-                AvatarUrl ?? ""
+                Name, Surname, Patronymic, sex, Birthday, Login, Password, AvatarUrl ?? ""
             );
             if (string.IsNullOrEmpty(response.Token))
             {

@@ -8,7 +8,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="20">
             <!-- Заголовок статьи -->
-            <Label Text="{Binding Title}" FontSize="24" HorizontalOptions="Center" FontAttributes="Bold" />
+            <Label Text="{Binding Title}" FontSize="24" TextColor="#fddebf" FontAttributes="Bold"/>
             <!-- Описание статьи -->
             <Label Text="{Binding Description}" FontSize="16" HorizontalOptions="Start" />
             <!-- Текст статьи -->
@@ -17,17 +17,19 @@
             <Label Text="{Binding Author.Name, StringFormat='Автор: {0}'}" FontSize="14" />
 
             <!-- Раздел комментариев -->
-            <Label Text="Комментарии:" FontSize="18" TextColor="DimGray" HorizontalOptions="Start" />
+            <Label Text="Комментарии:" FontSize="18" TextColor="#fddebf" HorizontalOptions="Start" />
             <CollectionView ItemsSource="{Binding Comments}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Comment">
-                        <Frame CornerRadius="10" Padding="15" Margin="0, 10, 0, 0" BackgroundColor="Gray">
+                        <Frame CornerRadius="10" Padding="15" Margin="0, 10, 0, 0">
                             <VerticalStackLayout>
                                 <!-- Имя пользователя -->
                                 <Label Text="{Binding User.Login, StringFormat='Пользователь: {0}'}" 
-                                       FontSize="14" />
+                                       FontSize="14"
+                                       TextColor="White"/>
                                 <!-- Текст комментария -->
-                                <Label Text="{Binding Text}" FontSize="14" />
+                                <Label Text="{Binding Text}"
+                                       FontSize="14"/>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>

@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:UserPanel.Models"
+             xmlns:helpers="clr-namespace:UserPanel.Helpers"
              x:Class="UserPanel.Views.Items.DetailsItemPage"
-             Title="DetailsItemPage">
-    <VerticalStackLayout Padding="20">
-        <Image Source="{Binding PreviewUrl}" Aspect="AspectFit" HeightRequest="200" />
-        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Title" Margin="0,20,0,10" />
-        <Label Text="Описание:" FontAttributes="Bold" />
-        <Label Text="{Binding Description}" Margin="0,5,0,20" />
-        <Label Text="Цена:" FontAttributes="Bold" />
-        <Label Text="{Binding Price}" />
-        <Label Text="Категория:" FontAttributes="Bold" />
-        <Label Text="{Binding ItemCategoryId}" />
-        <Label Text="Активация:" FontAttributes="Bold" />
-        <Label Text="{Binding IsActivated, Converter={StaticResource BooleanStringConverter}}" />
-    </VerticalStackLayout>
+             x:DataType="models:Item"
+             Title="{Binding Title}">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Margin="15">
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
+                <Frame Margin="0,0,10,0" CornerRadius="10" WidthRequest="150" Grid.RowSpan="0" Grid.Column="0">
+                    <Image Source="{Binding PreviewUrl}" 
+                       Aspect="AspectFill" 
+                       HeightRequest="120" 
+                       WidthRequest="150"
+                       HorizontalOptions="FillAndExpand">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
+                                <Setter Property="Source" Value="default_hero.png"/>
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                </Frame>
+                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                    <Label Text="Описание:" FontSize="16" TextColor="#fddebf" FontAttributes="Bold"/>
+                    <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" MaxLines="6" LineBreakMode="TailTruncation"/>
+                    <Label Text="Характеристики:" FontAttributes="Bold" FontSize="16" TextColor="#fddebf"/>
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="Цена:" FontAttributes="Bold" TextColor="#fddebf"/>
+                        <Label Text="{Binding Price}" TextColor="Gray"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="Категория:" FontAttributes="Bold" TextColor="#fddebf"/>
+                        <Label Text="{Binding ItemCategoryId}" TextColor="Gray"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="Активация:" FontAttributes="Bold" TextColor="#fddebf"/>
+                        <Label Text="{Binding IsActivated, Converter={StaticResource BooleanStringConverter}}" TextColor="Gray"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

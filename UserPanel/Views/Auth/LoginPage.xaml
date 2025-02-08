@@ -3,19 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:UserPanel.ViewModels"
              x:Class="UserPanel.Views.Auth.LoginPage"
-             Title="Авторизация"
-             >
+             Title="Авторизация">
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Spacing="10" Padding="50" VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="biglogo.png" HeightRequest="100"/>
-                <!-- Заголовок -->
                 <Label Text="Авторизация" FontSize="32" HorizontalOptions="Center" />
-                <!-- Поле для логина -->
                 <Entry Placeholder="Логин" Text="{Binding Login}" WidthRequest="300" HorizontalOptions="Center" />
-                <!-- Поле для пароля -->
                 <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" />
-                <!-- Кнопка входа -->
                 <Button Text="Войти" 
                         Command="{Binding LoginCommand}" 
                         BackgroundColor="#2196F3" 
@@ -23,20 +18,17 @@
                         CornerRadius="20" 
                         WidthRequest="200" 
                         HorizontalOptions="Center" />
-                <!-- Сообщение об ошибке -->
                 <Label Text="{Binding ErrorMessage}" 
                        TextColor="Red" 
                        IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
                        HorizontalOptions="Center" />
-                <!-- Контейнер для надписи и кнопки регистрации -->
                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                     <Label Text="Нет аккаунта?" 
-                           FontSize="16" 
                            TextColor="Gray" 
                            VerticalOptions="Center" />
                     <Button Text=" Зарегистрируйся"
-                    Clicked="ToRegisterPage"
-                    BackgroundColor="Transparent" 
+                            Clicked="ToRegisterPage"
+                            BackgroundColor="Transparent" 
                             TextColor="#2196F3" 
                             Padding="0" 
                             VerticalOptions="Center"/>

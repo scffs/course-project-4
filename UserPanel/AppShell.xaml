@@ -13,8 +13,8 @@
     <ShellContent Title="Reg" ContentTemplate="{DataTemplate auth:RegisterPage}" Route="RegisterPage" Shell.TabBarIsVisible="False"/>
     <TabBar>
         <ShellContent Title="Articles" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage"/>
-        <ShellContent Title="Profile" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
         <ShellContent Title="Heroes" ContentTemplate="{DataTemplate hero:HeroesPage}" Route="HeroesPage"/>
         <ShellContent Title="Items" ContentTemplate="{DataTemplate item:ItemsPage}" Route="ItemsPage" />
+        <ShellContent Title="Profile" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
     </TabBar>
 </Shell>

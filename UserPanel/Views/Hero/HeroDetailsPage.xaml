@@ -7,54 +7,76 @@
              x:DataType="models:Hero"
              Title="{Binding Name}">
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
-            <!-- Имя героя -->
-            <Label Text="{Binding Name}" FontSize="24" HorizontalOptions="Center" FontAttributes="Bold" />
-            <!-- Пол героя (с конвертером) -->
-            <Label Text="{Binding Sex, Converter={StaticResource SexToStringConverter}}" FontSize="16" TextColor="Gray" HorizontalOptions="Start" />
-            <!-- Фото героя -->
-            <Image Source="{Binding PhotoUrl}" Aspect="AspectFill" HeightRequest="300" HorizontalOptions="FillAndExpand">
-                <Image.Triggers>
-                    <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
-                        <Setter Property="Source" Value="default_hero.png"/>
-                    </DataTrigger>
-                </Image.Triggers>
-            </Image>
-            <!-- Описание героя -->
-            <Label Text="Описание:" FontSize="16" TextColor="DimGray" HorizontalOptions="Start" />
-            <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" MaxLines="5" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
-            <!-- Характеристики -->
-            <Label Text="Характеристики:" FontSize="16" TextColor="DimGray" HorizontalOptions="Start" />
-            <Label Text="{Binding Health, StringFormat='Здоровье: {0}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-            <Label Text="{Binding DamagePerSec, StringFormat='Урон в секунду: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-            <Label Text="{Binding BulletsAmount, StringFormat='Количество пуль: {0}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-            <Label Text="{Binding MoveSpeed, StringFormat='Скорость передвижения: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
-            <Label Text="{Binding WeaponDamage, StringFormat='Урон оружия: {0:F2}'}" FontSize="14" TextColor="DimGray" HorizontalOptions="Start" />
+        <VerticalStackLayout Spacing="10" Margin="15">
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
+                <Frame Margin="0,0,10,0" CornerRadius="10" WidthRequest="120" Grid.RowSpan="2" Grid.Column="0">
+                    <Image Source="{Binding PhotoUrl}" 
+                       Aspect="AspectFill" 
+                       HeightRequest="120" 
+                       WidthRequest="120"
+                       HorizontalOptions="FillAndExpand">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
+                                <Setter Property="Source" Value="default_hero.png"/>
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                </Frame>
 
+                <!-- Пол героя -->
+                <HorizontalStackLayout Spacing="5" Grid.Row="0" Grid.Column="1">
+                    <Label Text="Пол:" FontSize="16" TextColor="#fddebf" FontAttributes="Bold"/>
+                    <Label Text="{Binding Sex, Converter={StaticResource SexToStringConverter}}" FontSize="16" TextColor="Gray"/>
+                </HorizontalStackLayout>
+
+                <!-- Описание -->
+                <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                    <Label Text="Описание:" FontSize="16" TextColor="#fddebf" FontAttributes="Bold"/>
+                    <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" MaxLines="6" LineBreakMode="TailTruncation"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Характеристики -->
+            <Label Text="Характеристики:" FontSize="16" TextColor="#fddebf" FontAttributes="Bold" HorizontalOptions="Start"/>
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto">
+                <Label Text="{Binding Health, StringFormat='Здоровье: {0}'}" 
+                       FontSize="14" TextColor="#fddebf" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="{Binding MoveSpeed, StringFormat='Скорость передвижения: {0:F2}'}" 
+                       FontSize="14" TextColor="#fddebf" Grid.Row="2" Grid.Column="0"/>
+                <Label Text="{Binding DamagePerSec, StringFormat='Урон в секунду: {0:F2}'}" 
+                       FontSize="14" TextColor="#fddebf" Grid.Row="1" Grid.Column="1"/>
+                <Label Text="{Binding BulletsAmount, StringFormat='Кол-во пуль: {0}'}" 
+                       FontSize="14" TextColor="#fddebf" Grid.Row="0" Grid.Column="1"/>
+                <Label Text="{Binding WeaponDamage, StringFormat='Урон оружия: {0:F2}'}" 
+                       FontSize="14" TextColor="#fddebf" Grid.Row="1" Grid.ColumnSpan="0"/>
+            </Grid>
             <!-- Раздел способностей -->
-            <Label Text="Способности:" FontSize="18" TextColor="DimGray" HorizontalOptions="Start" />
+            <Label Text="Способности:" FontSize="18" TextColor="#fddebf" HorizontalOptions="Start" />
             <CollectionView ItemsSource="{Binding Abilities}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Ability">
-                        <Frame CornerRadius="10" Padding="15" Margin="0, 10, 0, 0" BackgroundColor="Gray">
-                            <VerticalStackLayout>
-                                <!-- Название способности -->
-                                <Label Text="{Binding Name}" FontSize="16" TextColor="Aqua" HorizontalOptions="Start" />
-                                <!-- Описание способности -->
-                                <Label Text="{Binding Description}" FontSize="14" TextColor="White" MaxLines="3" LineBreakMode="TailTruncation" HorizontalOptions="Start" />
+                        <Frame CornerRadius="10" Padding="15" Margin="0, 10, 0, 0">
+                            <Grid ColumnDefinitions="90, *" RowDefinitions="Auto, Auto">
                                 <!-- Изображение способности -->
-                                <Image Source="{Binding PhotoUrl}" Aspect="AspectFill" HeightRequest="100" HorizontalOptions="FillAndExpand">
+                                <Image Grid.RowSpan="2" Grid.Column="0" Source="{Binding PhotoUrl}" Aspect="AspectFill" WidthRequest="90" HeightRequest="90">
                                     <Image.Triggers>
                                         <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
-                                            <Setter Property="Source" Value="default_ability.png"/>
+                                            <Setter Property="Source" Value="logo.png"/>
                                         </DataTrigger>
                                     </Image.Triggers>
                                 </Image>
-                            </VerticalStackLayout>
+
+                                <!-- Название способности -->
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="16" TextColor="Aqua" HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+
+                                <!-- Описание способности -->
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="White" LineBreakMode="WordWrap"/>
+                            </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

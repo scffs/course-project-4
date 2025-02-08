@@ -9,31 +9,21 @@
         <ScrollView>
             <VerticalStackLayout Spacing="10" Padding="50" VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="biglogo.png" HeightRequest="100"/>
-                <!-- Заголовок -->
                 <Label Text="Регистрация" FontSize="32" HorizontalOptions="Center" />
-                <!-- Поле для имени -->
                 <Entry Placeholder="Имя*" Text="{Binding Name}" WidthRequest="300" HorizontalOptions="Center" />
-                <!-- Поле для фамилии -->
                 <Entry Placeholder="Фамилия*" Text="{Binding Surname}" WidthRequest="300" HorizontalOptions="Center" />
-                <!-- Поле для отчества -->
                 <Entry Placeholder="Отчество" Text="{Binding Patronymic}" WidthRequest="300" HorizontalOptions="Center" />
-                <!-- Выбор пола -->
                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                     <RadioButton Content="Мужской" IsChecked="{Binding IsMale}" />
                     <RadioButton Content="Женский" IsChecked="{Binding IsFemale}" />
                 </HorizontalStackLayout>
-                <!-- Поле для даты рождения -->
                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Дата рождения" TextColor="White" FontSize="14" VerticalOptions="Center" />
                     <DatePicker Date="{Binding Birthday}" TextColor="White" VerticalOptions="Center" />
                 </HorizontalStackLayout>
-                <!-- Поле для логина -->
                 <Entry Placeholder="Логин*" Text="{Binding Login}" WidthRequest="300" HorizontalOptions="Center" />
-                <!-- Поле для пароля -->
                 <Entry Placeholder="Пароль*" Text="{Binding Password}" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" />
-                <!-- Поле для ссылки на аватар -->
                 <Entry Placeholder="Ссылка на аватар" Text="{Binding AvatarUrl}" WidthRequest="300" HorizontalOptions="Center" />
-                <!-- Кнопка регистрации -->
                 <Button Text="Зарегистрироваться" 
                         Command="{Binding RegisterCommand}" 
                         BackgroundColor="#2196F3" 
@@ -41,15 +31,12 @@
                         CornerRadius="20" 
                         WidthRequest="200" 
                         HorizontalOptions="Center" />
-                <!-- Сообщение об ошибке -->
                 <Label Text="{Binding ErrorMessage}" 
                        TextColor="Red" 
                        IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
                        HorizontalOptions="Center" />
-                <!-- Контейнер для надписи и кнопки входа -->
                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                     <Label Text="Уже есть аккаунт?" 
-                           FontSize="16" 
                            TextColor="Gray" 
                            VerticalOptions="Center" />
                     <Button Text="Войти" 

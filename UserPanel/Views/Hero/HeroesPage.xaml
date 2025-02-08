@@ -5,64 +5,56 @@
              x:Class="UserPanel.Views.Hero.HeroesPage"
              x:DataType="viewModels:HeroesViewModel"
              Title="Герои">
-
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <FlexLayout 
-                BindableLayout.ItemsSource="{Binding Heroes}" 
-                AlignItems="Center" 
-                JustifyContent="Center" 
-                Wrap="Wrap" 
-                HorizontalOptions="Center" 
-                VerticalOptions="Start">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:Hero">
-                        <Frame 
-                            CornerRadius="10" 
-                            Padding="6" 
-                            HasShadow="True" 
-                            WidthRequest="170" 
-                            HeightRequest="230" 
-                            Margin="5" 
-                            HorizontalOptions="Center" 
-                            VerticalOptions="Center">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HeroesViewModel}}, Path=NavigateToHeroDetailsCommand}" 
-                                                      CommandParameter="{Binding .}" />
-                            </Frame.GestureRecognizers>
-
-                            <Grid RowDefinitions="Auto, *" ColumnDefinitions="*">
-                                <!-- Hero Name -->
-                                <Label 
-                                    Grid.Row="0" 
-                                    Text="{Binding Name}" 
-                                    FontSize="16" 
-                                    HorizontalTextAlignment="Center" 
-                                    FontAttributes="Bold" 
-                                    MaxLines="2" 
-                                    LineBreakMode="TailTruncation" />
-
-                                <!-- Hero Photo -->
-                                <Image 
-                                    Grid.Row="1" 
-                                    Source="{Binding PhotoUrl}" 
-                                    Aspect="AspectFill" 
-                                    WidthRequest="150" 
-                                    HeightRequest="150" 
-                                    HorizontalOptions="Center" 
-                                    VerticalOptions="Center">
-
-                                    <Image.Triggers>
-                                        <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
-                                            <Setter Property="Source" Value="default_hero.png" />
-                                        </DataTrigger>
-                                    </Image.Triggers>
-                                </Image>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </FlexLayout>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <FlexLayout 
+                    BindableLayout.ItemsSource="{Binding Heroes}" 
+                    AlignItems="Center" 
+                    JustifyContent="Center" 
+                    Wrap="Wrap" 
+                    HorizontalOptions="Center">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:Hero">
+                            <Frame 
+                                CornerRadius="10" 
+                                HeightRequest="230"
+                                WidthRequest="180"
+                                Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HeroesViewModel}}, Path=NavigateToHeroDetailsCommand}" 
+                                              CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <Grid RowDefinitions="Auto, *" ColumnDefinitions="*">
+                                    <Label 
+                                        Grid.Row="0" 
+                                        TextColor="#fddebf"
+                                        Text="{Binding Name}" 
+                                        FontSize="16" 
+                                        HorizontalTextAlignment="Center" 
+                                        FontAttributes="Bold" 
+                                        MaxLines="2" 
+                                        LineBreakMode="TailTruncation" />
+                                    <Image 
+                                        Grid.Row="1" 
+                                        Source="{Binding PhotoUrl}" 
+                                        Aspect="AspectFill" 
+                                        WidthRequest="150" 
+                                        HeightRequest="150" 
+                                        HorizontalOptions="Center" 
+                                        VerticalOptions="Center">   
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding PhotoUrl}" Value="{x:Null}">
+                                                <Setter Property="Source" Value="default_hero.png" />
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

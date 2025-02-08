@@ -33,11 +33,11 @@
                         <Label FontSize="Title" HorizontalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="{Binding CurrentUser.Surname}" />
+                                    <Span TextColor="#fddebf" Text="{Binding CurrentUser.Surname}" />
                                     <Span Text=" " />
-                                    <Span Text="{Binding CurrentUser.Name}" />
+                                    <Span TextColor="#fddebf" Text="{Binding CurrentUser.Name}" />
                                     <Span Text=" " />
-                                    <Span Text="{Binding CurrentUser.Patronymic}" />
+                                    <Span TextColor="#fddebf" Text="{Binding CurrentUser.Patronymic}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -46,22 +46,22 @@
                         <BoxView HeightRequest="1" HorizontalOptions="Fill" />
 
                         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                            <Label Text="Дата рождения:" FontSize="18" VerticalOptions="Center" />
+                            <Label TextColor="#fddebf" Text="Дата рождения:" FontSize="18" VerticalOptions="Center" />
                             <Label Text="{Binding CurrentUser.Birthday, StringFormat='{0:dd.MM.yyyy}'}" FontSize="18" VerticalOptions="Center" />
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                            <Label Text="Пол:" FontSize="18" VerticalOptions="Center" />
+                            <Label TextColor="#fddebf" Text="Пол:" FontSize="18" VerticalOptions="Center" />
                             <Label Text="{Binding CurrentUser.Sex, Converter={StaticResource SexToStringConverter}}" FontSize="18" VerticalOptions="Center" />
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                            <Label Text="Статус:" FontSize="18" VerticalOptions="Center" />
+                            <Label TextColor="#fddebf" Text="Статус:" FontSize="18" VerticalOptions="Center" />
                             <Label Text="{Binding CurrentUser.Status}" FontSize="18" VerticalOptions="Center" />
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                            <Label Text="Логин:" FontSize="18" VerticalOptions="Center" />
+                        <Label TextColor="#fddebf" Text="Логин:" FontSize="18" VerticalOptions="Center" />
                             <Label Text="{Binding CurrentUser.Login}" FontSize="18" VerticalOptions="Center" />
                         </HorizontalStackLayout>
 

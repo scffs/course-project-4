@@ -8,19 +8,18 @@
              x:DataType="viewModels:ItemsViewModel">
 
     <ScrollView>
-        <VerticalStackLayout Padding="10">
-            <Label Text="{Binding ErrorMessage}" 
-                   TextColor="Red" 
-                   IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}" 
-                   HorizontalOptions="Center" />
+        <VerticalStackLayout>
             <FlexLayout 
                     BindableLayout.ItemsSource="{Binding Items}" 
-                    AlignItems="Start" 
+                    AlignItems="Center" 
                     JustifyContent="Center" 
-                    Wrap="Wrap">
+                    Wrap="Wrap" 
+                    HorizontalOptions="Center">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="models:Item">
-                        <Frame Margin="3" CornerRadius="10" WidthRequest="220" HeightRequest="250" HasShadow="True">
+                        <Frame CornerRadius="10" 
+                               WidthRequest="180"
+                               Margin="5">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ItemsViewModel}}, Path=NavigateToItemDetailsCommand}" 
                                                       CommandParameter="{Binding .}" />
@@ -29,12 +28,7 @@
                                 <Label 
                                 Text="{Binding Title}" 
                                 FontSize="16" 
-                                HorizontalTextAlignment="Center" 
-                                MaxLines="2" 
-                                LineBreakMode="TailTruncation" />
-                                <Label 
-                                Text="{Binding ItemCategoryId}" 
-                                FontSize="16" 
+                                TextColor="#fddebf"    
                                 HorizontalTextAlignment="Center" 
                                 MaxLines="2" 
                                 LineBreakMode="TailTruncation" />
