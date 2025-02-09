@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 namespace UserPanel.Models;
 public class User
 {
-    [JsonPropertyName("id")] public required ulong Id { get; set; }
+    [JsonPropertyName("id")] public required int Id { get; set; }
     [JsonPropertyName("name")] public required string Name { get; set; }
     [JsonPropertyName("surname")] public required string Surname { get; set; }
     [JsonPropertyName("patronymic")] public string? Patronymic { get; set; }
@@ -11,5 +11,5 @@ public class User
     [JsonPropertyName("status")] public string? Status { get; set; }
     [JsonPropertyName("login")] public required string Login { get; set; }
     [JsonPropertyName("avatar_url")] public string? AvatarUrl { get; set; }
-    [JsonPropertyName("role_id")] public required ulong RoleId { get; set; }
+    [JsonPropertyName("role_id")] public int RoleId { get; set; }
 }

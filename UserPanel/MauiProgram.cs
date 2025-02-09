@@ -28,6 +28,8 @@ namespace UserPanel
             builder.Services.AddApiHttpClient<HeroService>(baseAddress);
             builder.Services.AddApiHttpClient<AuthService>(baseAddress);
             builder.Services.AddApiHttpClient<ItemService>(baseAddress);
+            builder.Services.AddApiHttpClient<EditProfileService>(baseAddress);
+
             // Регистрация страниц и ViewModel
             builder.Services.AddTransient<ArticleDetailsPage>();
             builder.Services.AddTransient<ItemsDetailsPage>();
@@ -45,6 +47,10 @@ namespace UserPanel
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<ItemViewModel>();
             builder.Services.AddTransient<HeroViewModel>();
+
+            builder.Services.AddTransient<EditProfilePage>();
+            builder.Services.AddTransient<EditProfileViewModel>();
+
             var app = builder.Build();
             ServiceProvider = app.Services;
             return app;

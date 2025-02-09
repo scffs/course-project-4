@@ -23,7 +23,7 @@ public partial class ProfilePage
     }
     private async void ToUpdateProfilePage(object? sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//UpdateProfilePage");
+        await Shell.Current.GoToAsync("//EditProfilePage");
     }
     private async void OnLoginClicked(object sender, EventArgs e)
     {

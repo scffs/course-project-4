@@ -11,6 +11,7 @@
   Title="UserPanel">
     <ShellContent Title="Auth" ContentTemplate="{DataTemplate auth:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>
     <ShellContent Title="Reg" ContentTemplate="{DataTemplate auth:RegisterPage}" Route="RegisterPage" Shell.TabBarIsVisible="False"/>
+    <ShellContent Title="Edit Profile" ContentTemplate="{DataTemplate profile:EditProfilePage}" Route="EditProfilePage"/>
     <TabBar>
         <ShellContent Title="Articles" ContentTemplate="{DataTemplate articles:MainPage}" Route="MainPage"/>
         <ShellContent Title="Heroes" ContentTemplate="{DataTemplate hero:HeroesPage}" Route="HeroesPage"/>

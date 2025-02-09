@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:UserPanel.ViewModels"
+             x:Class="UserPanel.Views.Profile.EditProfilePage"
+             Title="Редактировать профиль"
+             x:DataType="viewModels:EditProfileViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Entry Placeholder="Имя" Text="{Binding Name}" />
+            <Entry Placeholder="Фамилия" Text="{Binding Surname}" />
+            <Entry Placeholder="Отчество" Text="{Binding Patronymic}" />
+            <DatePicker Date="{Binding Birthday}" />
+            <Entry Placeholder="Статус" Text="{Binding Status}" />
+            <Entry Placeholder="Логин" Text="{Binding Login}" />
+            <Entry Placeholder="URL аватара" Text="{Binding AvatarUrl}" />
+            <Picker Title="Пол" SelectedIndex="{Binding SexIndex}">
+                <Picker.Items>
+                    <x:String>Мужской</x:String>
+                    <x:String>Женский</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Button Text="Сохранить" Command="{Binding SaveCommand}" />
+            <Button Text="Отмена" Command="{Binding CancelCommand}" />
+
+            <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding HasError}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
