@@ -7,10 +7,6 @@ public class ItemService(HttpClient httpClient) : BaseService(httpClient)
     public async Task<List<Item>> GetItemsAsync()
     {
         var response = await _httpClient.GetAsync("items");
-        if (!response.IsSuccessStatusCode)
-        {
-            throw new Exception($"Ошибка запроса: {response.StatusCode}");
-        }
         var responseBody = await response.Content.ReadAsStringAsync();
         var options = new JsonSerializerOptions
         {
@@ -18,11 +14,6 @@ public class ItemService(HttpClient httpClient) : BaseService(httpClient)
             Converters = { new BooleanStringConverter() }
         };
         var result = JsonSerializer.Deserialize<List<Item>>(responseBody, options);
-
-        if (result == null)
-        {
-            throw new Exception("Ошибка обработки ответа сервера.");
-        }
         return result;
     }
 }

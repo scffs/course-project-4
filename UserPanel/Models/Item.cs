@@ -8,5 +8,6 @@ public class Item
     [JsonPropertyName("preview_url")] public required string PreviewUrl { get; set; }
     [JsonPropertyName("description")] public string? Description { get; set; }
     [JsonPropertyName("price")] public required decimal Price { get; set; }
-    [JsonPropertyName("item_category_id")] public required ulong ItemCategoryId { get; set; }
+    [JsonPropertyName("item_category")] public ItemCategory? ItemCategory { get; set; }
+
 }

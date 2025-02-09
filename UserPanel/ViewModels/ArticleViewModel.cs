@@ -5,34 +5,19 @@ using UserPanel.Models;
 using UserPanel.Services;
 using UserPanel.Views.Base;
 namespace UserPanel.ViewModels;
-public partial class ArticlesViewModel : ObservableObject
+public partial class ArticleViewModel : ObservableObject
 {
     private readonly ArticleService _articleService;
     [ObservableProperty] private ObservableCollection<Article> _articles;
-    [ObservableProperty] private bool _isBusy;
-    [ObservableProperty] private string? _errorMessage;
-    public ArticlesViewModel(ArticleService articleService)
+    public ArticleViewModel(ArticleService articleService)
     {
         _articleService = articleService;
         LoadArticles();
     }
     private async void LoadArticles()
     {
-        if (_isBusy) return;
-        _isBusy = true;
-        try
-        {
-            var articles = await _articleService.GetArticlesAsync();
-            Articles = new ObservableCollection<Article>(articles);
-        }
-        catch (Exception ex)
-        {
-            _errorMessage = ex.Message;
-        }
-        finally
-        {
-            _isBusy = false;
-        }
+        var articles = await _articleService.GetArticlesAsync();
+        Articles = new ObservableCollection<Article>(articles);
     }
     [RelayCommand]
     private async Task NavigateToArticleDetails(Article article)

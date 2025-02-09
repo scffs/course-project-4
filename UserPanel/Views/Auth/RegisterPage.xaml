@@ -7,7 +7,7 @@
              x:DataType="viewModels:RegisterViewModel">
     <ContentPage.Content>
         <ScrollView>
-            <VerticalStackLayout Spacing="10" Padding="50" VerticalOptions="Center" HorizontalOptions="Center">
+            <VerticalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="biglogo.png" HeightRequest="100"/>
                 <Label Text="Регистрация" FontSize="32" HorizontalOptions="Center" />
                 <Entry Placeholder="Имя*" Text="{Binding Name}" WidthRequest="300" HorizontalOptions="Center" />

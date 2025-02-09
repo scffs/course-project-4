@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:UserPanel.Models"
              xmlns:helpers="clr-namespace:UserPanel.Helpers"
-             x:Class="UserPanel.Views.Items.DetailsItemPage"
+             x:Class="UserPanel.Views.Items.ItemsDetailsPage"
              x:DataType="models:Item"
              Title="{Binding Title}">
     <ScrollView>
@@ -32,7 +32,7 @@
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Spacing="10">
                         <Label Text="Категория:" FontAttributes="Bold" TextColor="#fddebf"/>
-                        <Label Text="{Binding ItemCategoryId}" TextColor="Gray"/>
+                        <Label Text="{Binding ItemCategory.Name}" TextColor="Gray"/>
                     </HorizontalStackLayout>
                     <HorizontalStackLayout Spacing="10">
                         <Label Text="Активация:" FontAttributes="Bold" TextColor="#fddebf"/>

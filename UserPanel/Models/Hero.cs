@@ -2,7 +2,7 @@
 namespace UserPanel.Models;
 public class Hero
 {
-    [JsonPropertyName("id")] public required ulong Id { get; set; }
+    [JsonPropertyName("id")] public required int Id { get; set; }
     [JsonPropertyName("name")] public required string Name { get; set; }
     [JsonPropertyName("sex")] public required int Sex { get; set; }
     [JsonPropertyName("description")] public string? Description { get; set; }

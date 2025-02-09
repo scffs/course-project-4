@@ -22,21 +22,15 @@
                         </Image.Triggers>
                     </Image>
                 </Frame>
-
-                <!-- Пол героя -->
                 <HorizontalStackLayout Spacing="5" Grid.Row="0" Grid.Column="1">
                     <Label Text="Пол:" FontSize="16" TextColor="#fddebf" FontAttributes="Bold"/>
                     <Label Text="{Binding Sex, Converter={StaticResource SexToStringConverter}}" FontSize="16" TextColor="Gray"/>
                 </HorizontalStackLayout>
-
-                <!-- Описание -->
                 <VerticalStackLayout Grid.Row="1" Grid.Column="1">
                     <Label Text="Описание:" FontSize="16" TextColor="#fddebf" FontAttributes="Bold"/>
                     <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" MaxLines="6" LineBreakMode="TailTruncation"/>
                 </VerticalStackLayout>
             </Grid>
-
-            <!-- Характеристики -->
             <Label Text="Характеристики:" FontSize="16" TextColor="#fddebf" FontAttributes="Bold" HorizontalOptions="Start"/>
             <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto">
                 <Label Text="{Binding Health, StringFormat='Здоровье: {0}'}" 
@@ -50,7 +44,6 @@
                 <Label Text="{Binding WeaponDamage, StringFormat='Урон оружия: {0:F2}'}" 
                        FontSize="14" TextColor="#fddebf" Grid.Row="1" Grid.ColumnSpan="0"/>
             </Grid>
-            <!-- Раздел способностей -->
             <Label Text="Способности:" FontSize="18" TextColor="#fddebf" HorizontalOptions="Start" />
             <CollectionView ItemsSource="{Binding Abilities}">
                 <CollectionView.ItemTemplate>
@@ -65,11 +58,7 @@
                                         </DataTrigger>
                                     </Image.Triggers>
                                 </Image>
-
-                                <!-- Название способности -->
                                 <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="16" TextColor="Aqua" HorizontalOptions="Start" LineBreakMode="WordWrap"/>
-
-                                <!-- Описание способности -->
                                 <Label Grid.Column="1" Grid.Row="1" Text="{Binding Description}" FontSize="14" TextColor="White" LineBreakMode="WordWrap"/>
                             </Grid>
                         </Frame>

@@ -5,36 +5,30 @@
              xmlns:models="clr-namespace:UserPanel.Models"
              x:DataType="models:Article"
              Title="{Binding Title}">
+
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="20">
+            <!-- Категория статьи -->
+            <Label Text="{Binding ArticleCategory.Name}" FontSize="16" TextColor="Gray" FontAttributes="Italic"/>
             <!-- Заголовок статьи -->
             <Label Text="{Binding Title}" FontSize="24" TextColor="#fddebf" FontAttributes="Bold"/>
+            <Label Text="{Binding Author.Name, StringFormat='Автор: {0}'}" FontSize="14" />
             <!-- Описание статьи -->
             <Label Text="{Binding Description}" FontSize="16" HorizontalOptions="Start" />
             <!-- Текст статьи -->
             <Label Text="{Binding Text}" FontSize="14" MaxLines="10" LineBreakMode="TailTruncation" />
-            <!-- Автор статьи -->
-            <Label Text="{Binding Author.Name, StringFormat='Автор: {0}'}" FontSize="14" />
-
-            <!-- Раздел комментариев -->
-            <Label Text="Комментарии:" FontSize="18" TextColor="#fddebf" HorizontalOptions="Start" />
+            <!-- Комментарии -->
+            <Label Text="Комментарии:" TextColor="#fddebf" FontSize="18" FontAttributes="Bold" Padding="0,20,0,0"/>
             <CollectionView ItemsSource="{Binding Comments}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Comment">
-                        <Frame CornerRadius="10" Padding="15" Margin="0, 10, 0, 0">
-                            <VerticalStackLayout>
-                                <!-- Имя пользователя -->
-                                <Label Text="{Binding User.Login, StringFormat='Пользователь: {0}'}" 
-                                       FontSize="14"
-                                       TextColor="White"/>
-                                <!-- Текст комментария -->
-                                <Label Text="{Binding Text}"
-                                       FontSize="14"/>
-                            </VerticalStackLayout>
+                    <DataTemplate>
+                        <Frame BorderColor="White" Padding="10" CornerRadius="10">
+                            <Label Text="{Binding Text}" FontSize="14" />
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

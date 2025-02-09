@@ -1,9 +1,9 @@
 using UserPanel.Models;
 namespace UserPanel.Views.Items;
 
-public partial class DetailsItemPage : ContentPage
+public partial class ItemsDetailsPage : ContentPage
 {
-    public DetailsItemPage(Item item)
+    public ItemsDetailsPage(Item item)
     {
         InitializeComponent();
         BindingContext = item;

@@ -5,8 +5,7 @@
              x:Class="UserPanel.Views.Items.ItemsPage"
              xmlns:models="clr-namespace:UserPanel.Models"
              Title="Предметы"
-             x:DataType="viewModels:ItemsViewModel">
-
+             x:DataType="viewModels:ItemViewModel">
     <ScrollView>
         <VerticalStackLayout>
             <FlexLayout 
@@ -21,7 +20,7 @@
                                WidthRequest="180"
                                Margin="5">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ItemsViewModel}}, Path=NavigateToItemDetailsCommand}" 
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ItemViewModel}}, Path=NavigateToItemDetailsCommand}" 
                                                       CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
                             <VerticalStackLayout Spacing="5" VerticalOptions="Center" HorizontalOptions="Center">

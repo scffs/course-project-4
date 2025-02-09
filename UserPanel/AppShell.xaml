@@ -3,8 +3,8 @@
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   xmlns:auth="clr-namespace:UserPanel.Views.Auth"
-  xmlns:views="clr-namespace:UserPanel.Views.Base"
   xmlns:profile="clr-namespace:UserPanel.Views.Profile"
+  xmlns:articles="clr-namespace:UserPanel.Views.Base"
   xmlns:hero="clr-namespace:UserPanel.Views.Hero"
   xmlns:item="clr-namespace:UserPanel.Views.Items"
   FlyoutBehavior="Disabled"
@@ -12,7 +12,7 @@
     <ShellContent Title="Auth" ContentTemplate="{DataTemplate auth:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>
     <ShellContent Title="Reg" ContentTemplate="{DataTemplate auth:RegisterPage}" Route="RegisterPage" Shell.TabBarIsVisible="False"/>
     <TabBar>
-        <ShellContent Title="Articles" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage"/>
+        <ShellContent Title="Articles" ContentTemplate="{DataTemplate articles:MainPage}" Route="MainPage"/>
         <ShellContent Title="Heroes" ContentTemplate="{DataTemplate hero:HeroesPage}" Route="HeroesPage"/>
         <ShellContent Title="Items" ContentTemplate="{DataTemplate item:ItemsPage}" Route="ItemsPage" />
         <ShellContent Title="Profile" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
