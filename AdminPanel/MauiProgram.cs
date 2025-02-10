@@ -22,7 +22,7 @@ public static class MauiProgram
         // Регистрация сервисов
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<BaseService>();
-        builder.Services.AddApiHttpClient<AuthService>("http://127.0.0.1:8000/api/admin");
+        builder.Services.AddApiHttpClient<AuthService>("http://localhost:8000/encyclopedia");
 
         builder.Services.AddTransient<LoginViewModel>();
 

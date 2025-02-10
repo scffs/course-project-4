@@ -16,12 +16,12 @@ class ProfileController extends Controller
     $this->authorizeResource(User::class, 'profile');
   }
 
-  // profile - то, какой юзер обновляется
   public function show(User $profile): JsonResponse
   {
     return response()->json($profile);
   }
 
+  // profile - то, какой юзер обновляется
   public function update(UpdateUserRequest $request, User $profile): JsonResponse
   {
     $profile->update($request->validated());

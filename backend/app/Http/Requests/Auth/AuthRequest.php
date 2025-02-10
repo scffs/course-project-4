@@ -5,7 +5,7 @@ namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\ApiRequest;
 
-class AuthRequest extends ApiRequest
+class   AuthRequest extends ApiRequest
 {
   public function rules(): array
   {

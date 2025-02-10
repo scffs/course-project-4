@@ -14,6 +14,8 @@ public class AuthService(HttpClient httpClient) : BaseService(httpClient)
 
     var payload = new { login, password };
 
-    return await PostAsync<AuthResponse>("auth/login", payload);
+    return await PostAsync<AuthResponse>("encyclopedia/auth/admin/login", payload);
   }
 }
+
+// admin

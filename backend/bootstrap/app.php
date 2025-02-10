@@ -20,17 +20,21 @@ return Application::configure(basePath: dirname(__DIR__))
     apiPrefix: 'encyclopedia',
   )
   ->withMiddleware(function (Middleware $middleware) {
+    // Перехватывает переход на страницу входа для не авторизированных пользователей для показа ошибки
     $middleware->redirectGuestsTo(fn() => throw new UnauthorizedApiException());
   })
   ->withExceptions(function (Exceptions $exceptions) {
+    // Перехватывает 404 ошибку от Laravel для вызова нашей собственной ошибки
     $exceptions->render(function (NotFoundHttpException $e, Request $request) {
       throw new NotFoundException();
     });
 
+    // Перехватывает 401 ошибку от Laravel для вызова нашей собственной ошибки
     $exceptions->render(function (UnauthorizedHttpException $e, Request $request) {
       throw new UnauthorizedApiException();
     });
 
+    // Настройка для показа ошибок в формате JSON для API
     $exceptions->shouldRenderJsonWhen(
       fn(Request $request) => $request->is('api/*') && !config('app.debug')
     );

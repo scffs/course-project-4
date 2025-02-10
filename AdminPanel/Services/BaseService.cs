@@ -25,11 +25,16 @@ public class BaseService
 
     var response = await _httpClient.PostAsync(endpoint, content);
 
+    Console.WriteLine("a");
+    Console.WriteLine(content);
+    Console.WriteLine(response);
+    Console.WriteLine(endpoint);
     if (!response.IsSuccessStatusCode)
     {
       throw new Exception($"Ошибка запроса: {response.StatusCode}");
     }
 
+    // admin
     var responseBody = await response.Content.ReadAsStringAsync();
 
     var result = JsonSerializer.Deserialize<T>(responseBody, new JsonSerializerOptions

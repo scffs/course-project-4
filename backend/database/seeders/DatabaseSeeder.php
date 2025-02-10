@@ -8,12 +8,9 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-  /**
-   * Seed the application's database.
-   */
   public function run(): void
   {
-    // Вызов наполнителей
+    // Вызов заполнителей
     $this->call([
       RoleSeeder::class,
       UserSeeder::class,

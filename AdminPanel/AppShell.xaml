@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <Shell
   x:Class="AdminPanel.AppShell"
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -7,14 +8,38 @@
   xmlns:profile="clr-namespace:AdminPanel.Views.Profile"
   xmlns:articles="clr-namespace:AdminPanel.Views.Articles"
   xmlns:views="clr-namespace:AdminPanel.Views"
+  xmlns:heroes="clr-namespace:AdminPanel.Views.Heroes"
+  xmlns:users="clr-namespace:AdminPanel.Views.Users"
+  xmlns:items="clr-namespace:AdminPanel.Views.Items"
   FlyoutBehavior="Disabled"
   Title="AdminPanel">
-  <ShellContent Title="Логин" ContentTemplate="{DataTemplate views:LoginPage}" Route="LoginPage" Shell.TabBarIsVisible="False"/>
+  <ShellContent Title="Логин" ContentTemplate="{DataTemplate views:LoginPage}" Route="LoginPage"
+                Shell.TabBarIsVisible="False" />
   <!-- admin -->
   <TabBar>
-    <ShellContent Title="Главная" ContentTemplate="{DataTemplate base:MainPage}" Route="MainPage"/>
-    <ShellContent Title="Профиль" ContentTemplate="{DataTemplate profile:ProfilePage}" Route="ProfilePage"/>
-    <ShellContent Title="Статьи" ContentTemplate="{DataTemplate articles:ArticlesPage}" Route="ArticlesPage"/>
+    <Tab Icon="user.svg" Title="Пользователи">
+      <ShellContent ContentTemplate="{DataTemplate users:UsersPage}" Route="MainPage" />
+    </Tab>
+
+    <Tab Icon="profile.svg" Title="Профиль">
+      <ShellContent ContentTemplate="{DataTemplate profile:ProfilePage}"
+                    Route="ProfilePage" />
+    </Tab>
+
+    <Tab Icon="articles.svg" Title="Статьи">
+      <ShellContent ContentTemplate="{DataTemplate articles:ArticlesPage}"
+                    Route="ArticlesPage" />
+    </Tab>
+
+    <Tab Icon="heroes.svg" Title="Герои">
+      <ShellContent ContentTemplate="{DataTemplate heroes:HeroesPage}" Route="HeroesPage" />
+    </Tab>
+
+    <Tab Icon="items.svg" Title="Предметы">
+      <ShellContent ContentTemplate="{DataTemplate items:ItemsPage}" Route="ItemsPage" />
+    </Tab>
   </TabBar>
 
 </Shell>
+
+<!-- admin -->

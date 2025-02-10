@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
   Route::controller(AuthController::class)->group(function () {
+    // Вход пользователя
     Route::post('login', 'login');
+
+    // Вход администратора
     Route::post('admin/login', 'adminLogin');
+
     Route::post('register', 'register');
     Route::get('logout', 'logout')->middleware('auth:api');
   });

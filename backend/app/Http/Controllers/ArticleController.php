@@ -19,7 +19,7 @@ class ArticleController extends Controller
 
   public function index(): JsonResponse
   {
-    $articles = Article::with('author', 'articleCategory', 'comments')->get();
+    $articles = Article::with('author', 'articleCategory', 'comments', 'comments.user')->get();
     return response()->json($articles);
   }
 
